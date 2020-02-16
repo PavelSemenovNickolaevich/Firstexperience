@@ -32,4 +32,9 @@ public class ContactHelper extends HelperBase {
         clickContact(By.xpath("(//input[@name='submit'])[2]"));
     }
 
+    public void editContact () {
+        clickContact(By.id("head"));
+        clickContact(By.linkText("home"));
+    }
+
 }

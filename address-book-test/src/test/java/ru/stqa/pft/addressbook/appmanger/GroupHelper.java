@@ -4,6 +4,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import ru.stqa.pft.addressbook.model.GroupData;
 
+import java.util.concurrent.TimeUnit;
+
 public class GroupHelper extends HelperBase {
 
     public GroupHelper(WebDriver wd) {
@@ -30,5 +32,21 @@ public class GroupHelper extends HelperBase {
 
     public void logoutGroup() {
         click(By.linkText("Logout"));
+    }
+
+    public void selectGroup() {
+        click(By.name("selected[]"));
+    }
+
+    public void initGroupModification() {
+        click(By.name("edit"));
+    }
+
+    public void submitGroupModification() {
+        click(By.name("update"));
+    }
+
+    public void deleteGroup() {
+        click(By.name("delete"));
     }
 }
