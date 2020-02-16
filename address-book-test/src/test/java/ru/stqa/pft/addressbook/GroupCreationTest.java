@@ -34,6 +34,10 @@ public class GroupCreationTest {
         fillGroupForm(new GroupData("Qa", "QAheader", "QAfooter"));
         submitGroupCreation();
         returnToGroupPage();
+        logout();
+    }
+
+    private void logout() {
         wd.findElement(By.linkText("Logout")).click();
     }
 
