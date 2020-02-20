@@ -9,7 +9,7 @@ public class TestBase {
 
     @BeforeMethod(alwaysRun = true)
     public void setUp() throws Exception {
-        System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver_win32\\chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "C:\\Windows\\System32\\chromedriver8.0_win32\\chromedriver.exe");
         applicationManager.init();
     }
 

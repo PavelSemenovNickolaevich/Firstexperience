@@ -10,6 +10,7 @@ public class ContactModificationUpdateTest extends TestBase{
         applicationManager.getContactHelper().editContact();
         applicationManager.getContactHelper().fillContactInfo(new ContactData("Ivan", "Groznie", "Skynet", "Moscow","777777777"));
         applicationManager.getContactHelper().updateContact();
-       // applicationManager.getContactHelper().returnHomeContact();
+        applicationManager.getContactHelper().returnHomeContact();
+        applicationManager.getContactHelper().logoutContact();
     }
 }

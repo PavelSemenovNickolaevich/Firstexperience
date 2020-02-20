@@ -19,7 +19,6 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("middlename"), contactData.getMiddlename());
         wd.findElement(By.name("company")).click();
         typeContact(By.name("company"), contactData.getCompany());
-        wd.findElement(By.name("theform")).click();
         typeContact(By.name("address"), contactData.getAdress());
         typeContact(By.name("home"), contactData.getPhone());
     }
@@ -38,7 +37,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void updateContact() {
-        clickContact(By.xpath("//input[@name='update'])[2]"));
+        clickContact(By.name("update"));
     }
 
     public void deleteContact() {
