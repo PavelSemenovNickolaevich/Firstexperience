@@ -1,10 +1,11 @@
 public class MyFirstProgram {
-
+Point p2;
     public static void main(String[] args) {
         System.out.println("Hello world!");
 
         Point p1 = new Point(10,10);
-        System.out.println("Distance between points = " + p1.distance(15, 15));
+        Point p2 = new Point(15,15);
+        System.out.println("Distance between points = " + p1.distance(p2));
     }
 }
 /* Point p1 = new Point();
