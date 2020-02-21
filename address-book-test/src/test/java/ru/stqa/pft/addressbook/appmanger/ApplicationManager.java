@@ -24,7 +24,7 @@ public class ApplicationManager {
         } else {
             wd = new ChromeDriver();
         }
-        wd.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+        wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
         wd.get("http://localhost/addressbook/group.php?selected%5B%5D=1&delete=Delete+group%28s%29");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);

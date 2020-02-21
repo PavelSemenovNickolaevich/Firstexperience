@@ -7,6 +7,10 @@ public class ContactModificationUpdateTest extends TestBase{
 
     @Test
     public void testContactUpdate() {
+        applicationManager.getNavigationHelper().goToContact();
+        if (!applicationManager.getContactHelper().isThereAContact()) {
+            applicationManager.getContactHelper().createContact(new ContactData("Pavel", "Ivanov", "skynet", "new-york", "111111111"));
+        }
         applicationManager.getContactHelper().editContact();
         applicationManager.getContactHelper().fillContactInfo(new ContactData("Ivan", "Groznie", "Skynet", "Moscow","777777777"));
         applicationManager.getContactHelper().updateContact();
