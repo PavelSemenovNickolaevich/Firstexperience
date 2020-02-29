@@ -8,7 +8,6 @@ public class DeleteContactTest extends TestBase {
     @Test
     public void deleteContactTest() {
         applicationManager.getNavigationHelper().goToHome();
-        applicationManager.getNavigationHelper().goToAddNewContact();
         if (!applicationManager.getContactHelper().isThereAContact()) {
             applicationManager.getContactHelper().createContact(new ContactData("Pavel", "Ivanov", "skynet", "new-york", "111111111"));
         }

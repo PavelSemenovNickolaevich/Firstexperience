@@ -51,10 +51,14 @@ public class ContactHelper extends HelperBase {
     }
 
     public void createContact (ContactData contact) {
-       // goToContact();
+        goToContact();
         fillContactInfo(contact);
         submitContact();
         returnHomeContact();
+    }
+
+    private void goToContact () {
+        clickContact(By.linkText("add new"));
     }
 
     public void selectContact() {
