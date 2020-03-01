@@ -1,6 +1,8 @@
 package ru.stqa.pft.addressbook.model;
 
 public class ContactData {
+
+    private int id;
     private final String firstname;
     private final String lastname;
     private final String middlename;
@@ -8,13 +10,24 @@ public class ContactData {
     private final String adress;
     private final String phone;
 
-    public ContactData(String firstname,String lastname, String middlename, String company, String adress, String phone) {
+    public ContactData(String firstname, String lastname, String middlename, String company, String adress, String phone) {
+        this.id = 0;
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
         this.company = company;
         this.adress = adress;
         this.phone = phone;
+    }
+
+    public ContactData(int id, String firstname, String lastname, String middlename, String company, String adress, String phone) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.middlename = middlename;
+        this.company = company;
+        this.adress = adress;
+        this.phone = phone;
+        this.id = id;
     }
 
     public String getFirstname() {
@@ -41,10 +54,15 @@ public class ContactData {
         return phone;
     }
 
+    public int getId () {
+        return id;
+    }
+
     @Override
     public String toString () {
         return "ContactData{" +
-                "firstname='" + firstname + '\'' +
+                "id='" + id + '\'' +
+                ", firstname='" + firstname + '\'' +
                 ", lastname='" + lastname + '\'' +
                 '}';
     }
@@ -56,14 +74,21 @@ public class ContactData {
 
         ContactData that = (ContactData) o;
 
+        if (id != that.id) return false;
         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
         return lastname != null ? lastname.equals(that.lastname) : that.lastname == null;
     }
 
     @Override
     public int hashCode () {
-        int result = firstname != null ? firstname.hashCode() : 0;
+        int result = id;
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
         return result;
     }
+
+    public void setId (int id) {
+        this.id = id;
+    }
+
 }
