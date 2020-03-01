@@ -83,10 +83,10 @@ public class ContactHelper extends HelperBase {
        //ist<WebElement> elements = wd.findElements(By.name("selected[]"));
       //  List<WebElement> elements = wd.findElements(By.cssSelector("td.center > input"));
        // List<WebElement> elements = wd.findElements(By.tagName("td"));
-        List<WebElement> elements = wd.findElements(By.cssSelector("tr.entry"));
+        List<WebElement> elements = wd.findElements(By.name("tr[name=entry]"));
         for (WebElement element: elements) {
-            String firstname = element.findElement(By.tagName("td[2]")).getText();
-            String lastname = element.findElement(By.tagName("td[3]" )).getText();
+            String firstname = element.findElement(By.tagName("td[1]")).getText();
+            String lastname = element.findElement(By.tagName("td[2]" )).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
 
           //  int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
