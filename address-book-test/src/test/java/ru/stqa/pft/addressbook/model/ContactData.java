@@ -9,6 +9,7 @@ public class ContactData {
     private final String company;
     private final String adress;
     private final String phone;
+    private String title;
 
     public ContactData(String firstname, String lastname, String middlename, String company, String adress, String phone) {
         this.id = 0;
@@ -57,6 +58,7 @@ public class ContactData {
     public int getId () {
         return id;
     }
+
 
     @Override
     public String toString () {

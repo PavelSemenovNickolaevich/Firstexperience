@@ -17,7 +17,7 @@ public class ContactModificationUpdateTest extends TestBase{
         }
         List<ContactData> before = applicationManager.getContactHelper().getContactList();
      //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
-        applicationManager.getContactHelper().editContact();
+        applicationManager.getContactHelper().editContact(before.size());
         ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Ivan", "Groznie", "Skynet", "Moscow","777777777", "4w6w6");
         applicationManager.getContactHelper().fillContactInfo(contact);
         applicationManager.getContactHelper().updateContact();
