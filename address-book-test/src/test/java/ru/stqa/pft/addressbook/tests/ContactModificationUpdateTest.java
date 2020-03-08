@@ -17,8 +17,8 @@ public class ContactModificationUpdateTest extends TestBase{
         }
         List<ContactData> before = applicationManager.getContactHelper().getContactList();
      //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
-        applicationManager.getContactHelper().editContact(before.size());
-        ContactData contact = new ContactData(before.get(before.size() - 1).getId(),"Ivan", "Groznie", "Skynet", "Moscow","777777777", "4w6w6");
+        applicationManager.getContactHelper().editContact(1);
+        ContactData contact = new ContactData(before.get(1).getId(),"Ivan5555", "Groznie", "Skynet", "Moscow","777777777", "4w6w6");
         applicationManager.getContactHelper().fillContactInfo(contact);
         applicationManager.getContactHelper().updateContact();
         applicationManager.getContactHelper().returnHomeContact();
@@ -26,8 +26,8 @@ public class ContactModificationUpdateTest extends TestBase{
      //   int after = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов после
         Assert.assertEquals(after.size(), before.size());  //Сверка контактов
 
-        before.remove(before.size() - 1);
-        before.add(contact);
+     //   before.remove(1);
+      //  before.add(contact);
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
         applicationManager.getContactHelper().logoutContact();
     }

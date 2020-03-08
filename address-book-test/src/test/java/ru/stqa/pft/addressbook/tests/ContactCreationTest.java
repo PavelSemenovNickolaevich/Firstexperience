@@ -15,7 +15,7 @@ public class ContactCreationTest extends TestBase {
         List<ContactData> before = applicationManager.getContactHelper().getContactList();
      //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
         applicationManager.getNavigationHelper().goToAddNewContact();
-        ContactData contact = new ContactData("Pavel","Ivanov", "Ivanov", "skynet", "new-york", "111111111");
+        ContactData contact = new ContactData("Pavel","Alexeev", "Ivanov", "skynet", "new-york", "111111111");
         applicationManager.getContactHelper().fillContactInfo(contact);
         applicationManager.getContactHelper().submitContact();
         applicationManager.getContactHelper().returnHomeContact();
