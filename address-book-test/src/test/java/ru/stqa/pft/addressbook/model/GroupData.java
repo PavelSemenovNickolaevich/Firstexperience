@@ -32,7 +32,7 @@ public class GroupData {
         this.name = name;
         this.header = header;
         this.footer = footer;
-        this.id = Integer.MAX_VALUE;
+        this.id = 0;
     }
 
 
