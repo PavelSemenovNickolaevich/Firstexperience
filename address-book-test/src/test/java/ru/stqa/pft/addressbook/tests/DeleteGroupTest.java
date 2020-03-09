@@ -10,25 +10,30 @@ import java.util.List;
 public class DeleteGroupTest extends TestBase{
     @BeforeMethod
     public void ensurePreconditions() {
-        applicationManager.getNavigationHelper().goToGroupPage();
-        if (!applicationManager.getGroupHelper().isThereGroup()) {
-            applicationManager.getGroupHelper()
-                    .CreateGroup(new GroupData("Qa", "QAheader", "QAfooter"));
+        applicationManager.goTo().groupPage();
+        if (applicationManager.group().list().size() == 0) {
+            applicationManager.group()
+                    .create(new GroupData().withName("qaNAme").withHeader("QaHeader").withFooter("qaFooter"));
         }
     }
 
     @Test
     public void deleteGroup() {
-        List<GroupData> before = applicationManager.getGroupHelper().getGroupList();
+        List<GroupData> before = applicationManager.group().list();
+        int index = before.size() - 1;
       //  int before  = applicationManager.getGroupHelper().getGroupCount();
-        applicationManager.getGroupHelper().selectGroup(before.size()- 1);
-        applicationManager.getGroupHelper().deleteGroup();
-        applicationManager.getGroupHelper().returnToGroupPage();
-        List<GroupData> after = applicationManager.getGroupHelper().getGroupList();
+        applicationManager.group().delete(index);
+        List<GroupData> after = applicationManager.group().list();
        // int after  = applicationManager.getGroupHelper().getGroupCount();
         Assert.assertEquals(after.size(), before.size() - 1);
 
-        before.remove(before.size() - 1);
+        before.remove(index);
         Assert.assertEquals(before , after);
+    }
+
+    private void delete (int index) {
+        applicationManager.group().selectGroup(index);
+        applicationManager.group().deleteGroup();
+        applicationManager.group().returnToGroupPage();
     }
 }

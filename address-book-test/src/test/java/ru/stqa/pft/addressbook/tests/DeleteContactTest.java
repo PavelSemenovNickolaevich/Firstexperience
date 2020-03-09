@@ -10,7 +10,7 @@ import java.util.List;
 public class DeleteContactTest extends TestBase {
     @BeforeMethod
     public  void ensurePreconditionals() {
-        applicationManager.getNavigationHelper().goToHome();
+        applicationManager.goTo().goToHome();
         if (!applicationManager.getContactHelper().isThereAContact()) {
             applicationManager.getContactHelper()
                     .createContact(new ContactData("Pavel", "Ivanov", "skynet", "new-york", "111111111", "454545454"));
