@@ -8,6 +8,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/02.iml" filepath="$PROJECT_DIR$/.idea/modules/02.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/02.main.iml" filepath="$PROJECT_DIR$/.idea/modules/02.main.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/02.test.iml" filepath="$PROJECT_DIR$/.idea/modules/02.test.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/address-book-test.02.main.iml" filepath="$PROJECT_DIR$/.idea/modules/address-book-test.02.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/address-book-test.02.test.iml" filepath="$PROJECT_DIR$/.idea/modules/address-book-test.02.test.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/testJavaForTesters.iml" filepath="$PROJECT_DIR$/.idea/testJavaForTesters.iml" />
     </modules>
   </component>

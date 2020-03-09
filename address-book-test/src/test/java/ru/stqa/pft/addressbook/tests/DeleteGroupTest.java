@@ -1,11 +1,20 @@
 package ru.stqa.pft.addressbook.tests;
 
+import org.hamcrest.CoreMatchers;
+import org.hamcrest.MatcherAssert;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
+import ru.stqa.pft.addressbook.model.Groups;
 
 import java.util.List;
+import java.util.Set;
+import java.util.regex.Matcher;
+
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.*;
+import static org.testng.Assert.*;
 
 public class DeleteGroupTest extends TestBase{
     @BeforeMethod
@@ -19,21 +28,17 @@ public class DeleteGroupTest extends TestBase{
 
     @Test
     public void deleteGroup() {
-        List<GroupData> before = applicationManager.group().list();
-        int index = before.size() - 1;
+        Groups before = applicationManager.group().all();
+        GroupData deleteGroup = before.iterator().next();
       //  int before  = applicationManager.getGroupHelper().getGroupCount();
-        applicationManager.group().delete(index);
-        List<GroupData> after = applicationManager.group().list();
+        applicationManager.group().delete(deleteGroup);
+        Groups after = applicationManager.group().all();
        // int after  = applicationManager.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after.size(), before.size() - 1);
+        assertEquals(after.size(), before.size() - 1);
 
-        before.remove(index);
-        Assert.assertEquals(before , after);
+     //   before.remove(deleteGroup);
+        assertThat(after, equalTo(before.without(deleteGroup)));
+    //    Assert.assertEquals(before , after);
     }
 
-    private void delete (int index) {
-        applicationManager.group().selectGroup(index);
-        applicationManager.group().deleteGroup();
-        applicationManager.group().returnToGroupPage();
-    }
 }
