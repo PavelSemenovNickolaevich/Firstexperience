@@ -43,6 +43,25 @@ public class ContactHelper extends HelperBase {
         //clickContact(By.xpath("//img[@alt='Edit']"));
     }
 
+    public void deleteContact (int index) {
+        selectContact(index);
+        deleteContact();
+        home();
+    }
+
+    public void modifyContact (int index, ContactData contact) {
+        editContact(index);
+        fillContactInfo(contact);
+        updateContact();
+        returnHomeContact();
+    }
+
+    public void createNew (ContactData contact) {
+        fillContactInfo(contact);
+        submitContact();
+        returnHomeContact();
+    }
+
 
     public void updateContact() {
         clickContact(By.name("update"));

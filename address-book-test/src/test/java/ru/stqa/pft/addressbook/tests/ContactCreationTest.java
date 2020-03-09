@@ -13,15 +13,13 @@ public class ContactCreationTest extends TestBase {
     @Test
     public void testCreateNewContact() throws Exception {
         applicationManager.goTo().goToHome();
-        List<ContactData> before = applicationManager.getContactHelper().getContactList();
+        applicationManager.goTo().goToAddNewContact();
+        List<ContactData> before = applicationManager.contact().getContactList();
         ContactData contact = new ContactData("Pavel111","First", "Ivanov"
                 , "skynet", "new-york", "111111111");
      //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
-        applicationManager.goTo().goToAddNewContact();
-        applicationManager.getContactHelper().fillContactInfo(contact);
-        applicationManager.getContactHelper().submitContact();
-        applicationManager.getContactHelper().returnHomeContact();
-        List<ContactData> after = applicationManager.getContactHelper().getContactList();
+        applicationManager.contact().createNew(contact);
+        List<ContactData> after = applicationManager.contact().getContactList();
      //   int after = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов после
         Assert.assertEquals(after.size(), before.size() + 1);  //Сверка счетчиков
 
@@ -38,7 +36,8 @@ public class ContactCreationTest extends TestBase {
         after.sort(byId);
         Assert.assertEquals(before, after);
         Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
-        applicationManager.getContactHelper().logoutContact();
+        applicationManager.contact().logoutContact();
     }
+
 
 }
