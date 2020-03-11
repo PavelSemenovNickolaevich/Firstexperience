@@ -1,4 +1,5 @@
 package ru.stqa.pft.addressbook.tests;
+
 import org.openqa.selenium.remote.BrowserType;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -11,12 +12,12 @@ public class TestBase {
     protected static final ApplicationManager applicationManager = new ApplicationManager(BrowserType.CHROME);
 
     @BeforeMethod(alwaysRun = true)
-    public void setUp() throws Exception {
+    public void setUp () throws Exception {
         applicationManager.init();
     }
 
     @AfterMethod(alwaysRun = true)
-    public void tearDown() throws Exception {
+    public void tearDown () throws Exception {
         applicationManager.stop();
     }
 

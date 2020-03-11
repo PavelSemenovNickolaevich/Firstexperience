@@ -13,7 +13,7 @@ import java.util.Set;
 public class GroupModificationUpdateTest extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditions() {
+    public void ensurePreconditions () {
         applicationManager.goTo().groupPage();
         if (applicationManager.group().list().size() == 0) {
             applicationManager.group()
@@ -22,17 +22,17 @@ public class GroupModificationUpdateTest extends TestBase {
     }
 
     @Test
-    public void testGroupUpdate() {
+    public void testGroupUpdate () {
         Groups before = applicationManager.group().all();
         GroupData modifiedGroup = before.iterator().next();
-       // int index = before.size() - 1;
+        // int index = before.size() - 1;
         GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("qaNAme")
                 .withHeader("QaHeader").withFooter("qaFooter");
-       // int before  = applicationManager.getGroupHelper().getGroupCount();
+        // int before  = applicationManager.getGroupHelper().getGroupCount();
         applicationManager.group().modify(group);
         Groups after = applicationManager.group().all();
-       // int after  = applicationManager.getGroupHelper().getGroupCount();
-        Assert.assertEquals(after.size(), before.size() );
+        // int after  = applicationManager.getGroupHelper().getGroupCount();
+        Assert.assertEquals(after.size(), before.size());
 
         before.remove(modifiedGroup);
         before.add(group);
@@ -41,6 +41,6 @@ public class GroupModificationUpdateTest extends TestBase {
         after.sort(byId);*/
         Assert.assertEquals(before, after);
         MatcherAssert.assertThat(after, CoreMatchers.equalTo((before.without(modifiedGroup).withAdded(group))));
-      //  Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        //  Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
     }
 }

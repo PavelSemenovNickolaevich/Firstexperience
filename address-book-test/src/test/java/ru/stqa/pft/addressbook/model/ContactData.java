@@ -11,7 +11,7 @@ public class ContactData {
     private final String phone;
     private String title;
 
-    public ContactData(String firstname, String lastname, String middlename, String company, String adress, String phone) {
+    public ContactData (String firstname, String lastname, String middlename, String company, String adress, String phone) {
         this.id = Integer.MAX_VALUE;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -21,7 +21,7 @@ public class ContactData {
         this.phone = phone;
     }
 
-    public ContactData(int id, String firstname, String lastname, String middlename, String company, String adress, String phone) {
+    public ContactData (int id, String firstname, String lastname, String middlename, String company, String adress, String phone) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
@@ -31,27 +31,27 @@ public class ContactData {
         this.id = id;
     }
 
-    public String getFirstname() {
+    public String getFirstname () {
         return firstname;
     }
 
-    public String getLastName() {
+    public String getLastName () {
         return lastname;
     }
 
-    public String getMiddlename() {
+    public String getMiddlename () {
         return middlename;
     }
 
-    public String getCompany() {
+    public String getCompany () {
         return company;
     }
 
-    public String getAdress() {
+    public String getAdress () {
         return adress;
     }
 
-    public String getPhone() {
+    public String getPhone () {
         return phone;
     }
 

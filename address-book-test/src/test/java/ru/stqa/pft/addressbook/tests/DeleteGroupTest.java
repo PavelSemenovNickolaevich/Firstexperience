@@ -16,9 +16,9 @@ import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 import static org.testng.Assert.*;
 
-public class DeleteGroupTest extends TestBase{
+public class DeleteGroupTest extends TestBase {
     @BeforeMethod
-    public void ensurePreconditions() {
+    public void ensurePreconditions () {
         applicationManager.goTo().groupPage();
         if (applicationManager.group().list().size() == 0) {
             applicationManager.group()
@@ -27,18 +27,18 @@ public class DeleteGroupTest extends TestBase{
     }
 
     @Test
-    public void deleteGroup() {
+    public void deleteGroup () {
         Groups before = applicationManager.group().all();
         GroupData deleteGroup = before.iterator().next();
-      //  int before  = applicationManager.getGroupHelper().getGroupCount();
+        //  int before  = applicationManager.getGroupHelper().getGroupCount();
         applicationManager.group().delete(deleteGroup);
         Groups after = applicationManager.group().all();
-       // int after  = applicationManager.getGroupHelper().getGroupCount();
+        // int after  = applicationManager.getGroupHelper().getGroupCount();
         assertEquals(after.size(), before.size() - 1);
 
-     //   before.remove(deleteGroup);
+        //   before.remove(deleteGroup);
         assertThat(after, equalTo(before.without(deleteGroup)));
-    //    Assert.assertEquals(before , after);
+        //    Assert.assertEquals(before , after);
     }
 
 }

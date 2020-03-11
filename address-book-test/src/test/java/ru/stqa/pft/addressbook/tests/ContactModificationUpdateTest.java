@@ -9,9 +9,9 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-public class ContactModificationUpdateTest extends TestBase{
+public class ContactModificationUpdateTest extends TestBase {
     @BeforeMethod
-    public void ensurePreconditionals() {
+    public void ensurePreconditionals () {
         applicationManager.goTo().goToHome();
         if (applicationManager.contact().all().size() == 0) {
             applicationManager.contact()
@@ -21,23 +21,23 @@ public class ContactModificationUpdateTest extends TestBase{
     }
 
     @Test
-    public void testContactUpdate() {
+    public void testContactUpdate () {
         Set<ContactData> before = applicationManager.contact().all();
-        ContactData  modifyContact = before.iterator().next();
+        ContactData modifyContact = before.iterator().next();
 
-       //List<ContactData> before = applicationManager.contact().getContactList();
+        //List<ContactData> before = applicationManager.contact().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(modifyContact.getId(),"Ivan01"
-                , "Groznie", "Skynet", "Moscow","777777777", "4w6w6");
-     //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
-       applicationManager.contact().modifyContact(index, contact);
-    //    List<ContactData> after = applicationManager.contact().getContactList();
+        ContactData contact = new ContactData(modifyContact.getId(), "Ivan01"
+                , "Groznie", "Skynet", "Moscow", "777777777", "4w6w6");
+        //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
+        applicationManager.contact().modifyContact(index, contact);
+        //    List<ContactData> after = applicationManager.contact().getContactList();
         Set<ContactData> after = applicationManager.contact().all();
-     //   int after = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов после
+        //   int after = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов после
         Assert.assertEquals(after.size(), before.size());  //Сверка контактов
         before.remove(modifyContact);
         before.add(contact);
-      //  Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        //  Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
         applicationManager.contact().logoutContact();
     }
 

@@ -20,25 +20,25 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactCreationTest extends TestBase {
 
     @Test
-    public void testCreateNewContact() throws Exception {
+    public void testCreateNewContact () throws Exception {
         applicationManager.goTo().goToHome();
         Contacts before = applicationManager.contact().all();
         applicationManager.goTo().goToAddNewContact();
-       // List<ContactData> before = applicationManager.contact().getContactList();
+        // List<ContactData> before = applicationManager.contact().getContactList();
         //  Contacts before = applicationManager.contact().getContactList();
-       // Set<ContactData> before = applicationManager.contact().all();
-     //   Contacts before = applicationManager.contact().all();
-        ContactData contact = new ContactData("Pavel111","First", "Ivanov"
+        // Set<ContactData> before = applicationManager.contact().all();
+        //   Contacts before = applicationManager.contact().all();
+        ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
                 , "skynet", "new-york", "111111111");
-     //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
+        //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
         applicationManager.contact().createNew(contact);
-       // List<ContactData> after = applicationManager.contact().getContactList();
-      //  Contacts after = applicationManager.contact().getContactList();
-     //   Set<ContactData> after = applicationManager.contact().all();
+        // List<ContactData> after = applicationManager.contact().getContactList();
+        //  Contacts after = applicationManager.contact().getContactList();
+        //   Set<ContactData> after = applicationManager.contact().all();
         Contacts after = applicationManager.contact().all();
-     //   int after = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов после
-      //  Assert.assertEquals(after.size(), before.size() + 1);//Сверка счетчиков
-        assertThat(after.size(),equalTo(before.size() + 1));
+        //   int after = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов после
+        //  Assert.assertEquals(after.size(), before.size() + 1);//Сверка счетчиков
+        assertThat(after.size(), equalTo(before.size() + 1));
 
     /*    int max = 0;
         for (ContactData g: after) {
@@ -46,15 +46,15 @@ public class ContactCreationTest extends TestBase {
                 max = g.getId();
             }
         }*/
-     //   contact.setId(max);
-        contact.setId(after.stream().mapToInt((c) -> c.getId() ).max().getAsInt());
-     //    before.add(contact);
-    //    Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
-     //   before.sort(byId);
-    //    after.sort(byId);
-       // Assert.assertEquals(before, after);
+        //   contact.setId(max);
+        contact.setId(after.stream().mapToInt((c) -> c.getId()).max().getAsInt());
+        //    before.add(contact);
+        //    Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
+        //   before.sort(byId);
+        //    after.sort(byId);
+        // Assert.assertEquals(before, after);
         assertThat(after, equalTo(before.withAdded(contact)));
-    //    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
+        //    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
         applicationManager.contact().logoutContact();
     }
 
