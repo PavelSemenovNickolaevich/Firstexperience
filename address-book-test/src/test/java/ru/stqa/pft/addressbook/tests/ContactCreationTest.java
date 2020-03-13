@@ -29,7 +29,7 @@ public class ContactCreationTest extends TestBase {
         // Set<ContactData> before = applicationManager.contact().all();
         //   Contacts before = applicationManager.contact().all();
         ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
-                , "skynet", "new-york", "111111111");
+                , "skynet", "new-york", "111", "222", "333" );
         //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
         applicationManager.contact().createNew(contact);
         // List<ContactData> after = applicationManager.contact().getContactList();

@@ -8,26 +8,32 @@ public class ContactData {
     private final String middlename;
     private final String company;
     private final String adress;
-    private final String phone;
+    private final String phoneHome;
+    private final String phoneMobile;
+    private final String phoneWork;
     private String title;
 
-    public ContactData (String firstname, String lastname, String middlename, String company, String adress, String phone) {
+    public ContactData (String firstname, String lastname, String middlename, String company, String adress, String phoneHome, String phoneMobile, String phoneWork) {
         this.id = Integer.MAX_VALUE;
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
         this.company = company;
         this.adress = adress;
-        this.phone = phone;
+        this.phoneHome = phoneHome;
+        this.phoneMobile = phoneMobile;
+        this.phoneWork = phoneWork;
     }
 
-    public ContactData (int id, String firstname, String lastname, String middlename, String company, String adress, String phone) {
+    public ContactData (int id, String firstname, String lastname, String middlename, String company, String adress, String phoneHome, String phoneMobile, String phoneWork) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
         this.company = company;
         this.adress = adress;
-        this.phone = phone;
+        this.phoneHome = phoneHome;
+        this.phoneMobile = phoneMobile;
+        this.phoneWork = phoneWork;
         this.id = id;
     }
 
@@ -51,8 +57,16 @@ public class ContactData {
         return adress;
     }
 
-    public String getPhone () {
-        return phone;
+    public String getPhoneHome () {
+        return phoneHome;
+    }
+
+    public String getPhoneMobile() {
+        return phoneMobile;
+    }
+
+    public String getPhoneWork() {
+        return phoneWork;
     }
 
     public int getId () {

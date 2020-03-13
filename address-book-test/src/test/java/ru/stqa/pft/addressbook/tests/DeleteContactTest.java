@@ -19,7 +19,7 @@ public class DeleteContactTest extends TestBase {
         if (applicationManager.contact().all().size() == 0) {
             applicationManager.contact()
                     .createContact(new ContactData("Pavel", "Ivanov", "skynet"
-                            , "new-york", "111111111", "454545454"));
+                            , "new-york", "111111111", "111", "222", "333"));
         }
     }
 
