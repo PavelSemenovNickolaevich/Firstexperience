@@ -102,7 +102,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void selectContactById (int id) {
-        wd.findElement(By.cssSelector("input.value")).click();
+        wd.findElement(By.cssSelector("input[value= '" + id + "']")).click();
     }
 
 
