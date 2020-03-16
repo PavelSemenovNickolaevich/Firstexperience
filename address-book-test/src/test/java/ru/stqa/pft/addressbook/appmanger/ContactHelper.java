@@ -30,8 +30,8 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("company"), contactData.getCompany());
         typeContact(By.name("address"), contactData.getAdress());
         typeContact(By.name("home"), contactData.getPhoneHome());
-        typeContact(By.name("Mobile"), contactData.getPhoneHome());
-        typeContact(By.name("Work"), contactData.getPhoneHome());
+        typeContact(By.name("mobile"), contactData.getPhoneMobile());
+        typeContact(By.name("work"), contactData.getPhoneWork());
 
     }
 
@@ -132,14 +132,16 @@ public class ContactHelper extends HelperBase {
 
     public Contacts all() {
         Contacts contacts = new Contacts();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element : elements) {
-            List<WebElement> cells = element.findElements(By.tagName("td"));
+        List<WebElement> rows = wd.findElements(By.name("entry"));
+        for (WebElement row : rows) {
+            List<WebElement> cells = row.findElements(By.tagName("td"));
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            //разбить строку на фрагменты
+            String[] phones = cells.get(5).getText().split("\n");
+            int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData(id, firstname, lastname, null, null, null
-                    , null, null, null));
+                    , phones[0], phones[1], phones[2]));
         }
         return contacts;
     }
@@ -148,9 +150,9 @@ public class ContactHelper extends HelperBase {
         initContactModificationById(contact.getId());
         String firstname = wd.findElement(By.name("firstname")).getAttribute("value");
         String lastname = wd.findElement(By.name("lastname")).getAttribute("value");
-        String homePhone = wd.findElement(By.name("homePhone")).getAttribute("value");
-        String mobilePhone = wd.findElement(By.name("mobilePhone")).getAttribute("value");
-        String workPhone = wd.findElement(By.name("workPhone")).getAttribute("value");
+        String homePhone = wd.findElement(By.name("home")).getAttribute("value");
+        String mobilePhone = wd.findElement(By.name("mobile")).getAttribute("value");
+        String workPhone = wd.findElement(By.name("work")).getAttribute("value");
         wd.navigate().back();
         return new ContactData(contact.getId(), firstname, lastname, null, null, null, homePhone, mobilePhone, workPhone);
     }
@@ -162,6 +164,11 @@ public class ContactHelper extends HelperBase {
         cells.get(7).findElement((By.tagName("a"))).click();
 
     }
+
+    // примеры коротких методов нахождения элемента по id
+ //   wd.findElement(By.XPath(String.format("//input[@value = '%s']/../../td[8]/a", id))).click();
+ //   wd.findElement(By.XPath(String.format("//tr[.//input[@value = '%s']]/td[8]/a", id))).click();
+ //   wd.findElement(By.cssSelector(String.format("a[href='edit.php?id=%s']', id))).click();
 
   /*  public List<ContactData> getContactList () {
         List<ContactData> contacts  = new ArrayList<ContactData>();
@@ -189,5 +196,6 @@ public class ContactHelper extends HelperBase {
         }
         return contacts;
     }*/
+
 }
 
