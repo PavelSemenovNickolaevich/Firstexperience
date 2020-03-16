@@ -19,8 +19,9 @@ public class ContactModificationUpdateTest extends TestBase {
         applicationManager.goTo().goToHome();
         if (applicationManager.contact().all().size() == 0) {
             applicationManager.contact()
-                    .createContact(new ContactData("Pavel", "Ivanov", "skynet"
-                            , "new-york", "111111111", "111", "222", "333"));
+                    .createContact(new ContactData("Pavel111", "First", "Ivanov"
+                            , "skynet", "Moscow 3-builder street 10", "111", "222",
+                            "333", "123@gmail.com", "ivanov@mail.com" ));
         }
     }
 
@@ -31,8 +32,9 @@ public class ContactModificationUpdateTest extends TestBase {
 
         //List<ContactData> before = applicationManager.contact().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(modifyContact.getId(), "Ivan01"
-                , "Groznie", "Skynet", "Moscow", "777777777", "111", "222", "333");
+        ContactData contact = new ContactData(modifyContact.getId(), "Pavel111", "First", "Ivanov"
+                , "skynet", "Moscow 3-builder street 10", "111", "222",
+                "333", "123@gmail.com", "ivanov@mail.com");
         //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
         applicationManager.contact().modifyContact(index, contact);
         //    List<ContactData> after = applicationManager.contact().getContactList();
