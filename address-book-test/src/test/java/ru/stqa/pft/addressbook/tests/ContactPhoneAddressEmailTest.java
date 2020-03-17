@@ -7,6 +7,11 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
+import static org.hamcrest.MatcherAssert.*;
+
 public class ContactPhoneAddressEmailTest extends TestBase {
 
     @BeforeMethod
@@ -26,12 +31,19 @@ public class ContactPhoneAddressEmailTest extends TestBase {
         ContactData contact = applicationManager.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = applicationManager.contact().infoFromEditForm(contact);
 
-        MatcherAssert.assertThat(contact.getPhoneHome(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneHome())));
-        MatcherAssert.assertThat(contact.getPhoneMobile(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneMobile())));
-        MatcherAssert.assertThat(contact.getPhoneWork(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneWork())));
-        MatcherAssert.assertThat(contact.getEmailOne(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailOne())));
-        MatcherAssert.assertThat(contact.getEmailTwo(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailTwo())));
-        MatcherAssert.assertThat(contact.getAdress(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getAdress())));
+        assertThat(contact.getPhoneHome(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneHome())));
+        assertThat(contact.getPhoneMobile(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneMobile())));
+        assertThat(contact.getPhoneWork(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneWork())));
+        assertThat(contact.getEmailOne(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailOne())));
+        assertThat(contact.getEmailTwo(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailTwo())));
+      //  assertThat(contact.getAdress(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getAdress())));
+        assertThat(contact.getAdress(), CoreMatchers.equalTo(mergeAdress(contactInfoFromEditForm)));
+
+    }
+
+    private String mergeAdress (ContactData contact) {
+        return Arrays.asList(contact.getAdress())
+                .stream().filter((s) -> !s.equals("")).collect(Collectors.joining(""));
 
     }
 
