@@ -32,7 +32,7 @@ public class ContactModificationUpdateTest extends TestBase {
 
         //List<ContactData> before = applicationManager.contact().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(modifyContact.getId(), "Pavel111", "First", "Ivanov"
+        ContactData contact = new ContactData(modifyContact.getId(), "Pavell", "First", "Ivanov"
                 , "skynet", "Moscow 3-builder street 10", "111", "222",
                 "333", "123@gmail.com", "ivanov@mail.com");
         //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
