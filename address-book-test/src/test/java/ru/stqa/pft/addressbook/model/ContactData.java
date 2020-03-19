@@ -14,6 +14,7 @@ public class ContactData {
     private final String emailOne;
     private final String emailTwo;
     private String title;
+    private String allEmails;
 
     public ContactData (String firstname, String lastname, String middlename, String company, String adress,
                         String phoneHome, String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
@@ -26,7 +27,6 @@ public class ContactData {
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
         this.phoneWork = phoneWork;
-
         this.emailOne = emailOne;
         this.emailTwo = emailTwo;
     }
@@ -44,6 +44,22 @@ public class ContactData {
         this.id = id;
         this.emailOne = emailOne;
         this.emailTwo = emailTwo;
+    }
+
+    public ContactData (int id, String firstname, String lastname, String middlename, String company, String adress,
+                        String phoneHome, String phoneMobile, String phoneWork, String allEmails) {
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.middlename = middlename;
+        this.company = company;
+        this.adress = adress;
+        this.phoneHome = phoneHome;
+        this.phoneMobile = phoneMobile;
+        this.phoneWork = phoneWork;
+        this.id = id;
+        this.allEmails = allEmails;
+        this.emailOne = null;
+        this.emailTwo = null;
     }
     public String getEmailOne() {
         return emailOne;
@@ -89,6 +105,13 @@ public class ContactData {
         return id;
     }
 
+    public String getAllEmails () {
+        return allEmails;
+    }
+
+    public void allEmails (String allEmails) {
+        this.allEmails = allEmails;
+    }
 
     @Override
     public String toString () {

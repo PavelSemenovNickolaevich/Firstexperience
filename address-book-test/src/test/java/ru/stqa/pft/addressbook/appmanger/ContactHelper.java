@@ -141,12 +141,13 @@ public class ContactHelper extends HelperBase {
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
             String adress = cells.get(3).getText();
-            String[] email  = cells.get(4).getText().split("\n");
+          //  String[] email  = cells.get(4).getText().split("\n");
             //разбить строку на фрагменты
             String[] phones = cells.get(5).getText().split("\n");
+            String  allEmails = cells.get(4).getText();
             int id = Integer.parseInt(cells.get(0).findElement(By.tagName("input")).getAttribute("value"));
             contacts.add(new ContactData (id, lastname, firstname, null, null, adress, phones[0],
-                    phones[1], phones[2], email[0], email[1]));
+                    phones[1], phones[2], allEmails));
         }
         return contacts;
     }
