@@ -15,28 +15,28 @@ import static org.hamcrest.MatcherAssert.*;
 public class ContactPhoneAddressEmailTest extends TestBase {
 
     @BeforeMethod
-    public void ensurePreconditionals() {
+    public void ensurePreconditionals () {
         applicationManager.goTo().goToHome();
         if (applicationManager.contact().all().size() == 0) {
             applicationManager.contact()
                     .createContact(new ContactData("Pavel111", "First", "Ivanov"
                             , "skynet", "Moscow 3-builder street 10", "111", "222",
-                            "333", "123@gmail.com", "ivanov@mail.com" ));
+                            "333", "123@gmail.com", "ivanov@mail.com"));
         }
     }
 
     @Test
-    public void testContactPhonesEmailAdress() {
-    //    applicationManager.goTo().goToAddNewContact();
+    public void testContactPhonesEmailAdress () {
+        //    applicationManager.goTo().goToAddNewContact();
         ContactData contact = applicationManager.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = applicationManager.contact().infoFromEditForm(contact);
 
         assertThat(contact.getPhoneHome(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneHome())));
         assertThat(contact.getPhoneMobile(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneMobile())));
         assertThat(contact.getPhoneWork(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneWork())));
-       // assertThat(contact.getEmailOne(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailOne())));
-      //  assertThat(contact.getEmailTwo(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailTwo())));
-      //  assertThat(contact.getAdress(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getAdress())));
+        // assertThat(contact.getEmailOne(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailOne())));
+        //  assertThat(contact.getEmailTwo(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailTwo())));
+        //  assertThat(contact.getAdress(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getAdress())));
         assertThat(contact.getAllEmails(), CoreMatchers.equalTo(mergeEmails(contactInfoFromEditForm)));
         assertThat(contact.getAdress(), CoreMatchers.equalTo(mergeAdress(contactInfoFromEditForm)));
 
@@ -55,8 +55,8 @@ public class ContactPhoneAddressEmailTest extends TestBase {
 
     }
 
-    public static   String cleaned(String phone) {
+    public static String cleaned (String phone) {
         //очищение строчек
-        return phone.replaceAll("\\s", "").replaceAll("[-()]","");
+        return phone.replaceAll("\\s", "").replaceAll("[-()]", "");
     }
 }
