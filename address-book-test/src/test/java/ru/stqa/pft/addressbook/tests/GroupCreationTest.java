@@ -4,17 +4,31 @@ import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 public class GroupCreationTest extends TestBase {
 
-    @Test
-    public void testGroupCreation () throws Exception {
+    @DataProvider
+    public Iterator<Object[]> validGroups() {
+        List<Object[]>list = new ArrayList<Object[]>();
+        list.add(new Object[] {"test1", "header 1", "footer 1"});
+        list.add(new Object[] {"test2", "header 2", "footer 2"});
+        list.add(new Object[] {"test3", "header 3", "footer 3"});
+        return list.iterator();
+    }
+
+    @Test (dataProvider = "validGroups")
+    public void testGroupCreation (String name, String header, String footer) throws Exception {
         applicationManager.goTo().groupPage();
+        GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
         Groups before = applicationManager.group().all();
         //  int before  = applicationManager.getGroupHelper().getGroupCount();
-        GroupData group = new GroupData().withName("qa2").withHeader("test").withFooter("testqa");
         applicationManager.group().create(group);
         Groups after = applicationManager.group().all();
         //  int after  = applicationManager.getGroupHelper().getGroupCount();

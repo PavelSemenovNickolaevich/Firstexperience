@@ -15,6 +15,7 @@ public class ContactData {
     private final String emailTwo;
     private String title;
     private String allEmails;
+    private String allPhones;
 
     public ContactData (String firstname, String lastname, String middlename, String company, String adress,
                         String phoneHome, String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
@@ -47,16 +48,17 @@ public class ContactData {
     }
 
     public ContactData (int id, String firstname, String lastname, String middlename, String company, String adress,
-                        String phoneHome, String phoneMobile, String phoneWork, String allEmails) {
+                        String allPhones, String allEmails) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.middlename = middlename;
         this.company = company;
         this.adress = adress;
-        this.phoneHome = phoneHome;
-        this.phoneMobile = phoneMobile;
-        this.phoneWork = phoneWork;
+        this.phoneHome = null;
+        this.phoneMobile = null;
+        this.phoneWork = null;
         this.id = id;
+        this.allPhones = allPhones;
         this.allEmails = allEmails;
         this.emailOne = null;
         this.emailTwo = null;
@@ -107,6 +109,10 @@ public class ContactData {
 
     public String getAllEmails () {
         return allEmails;
+    }
+
+    public String getAllPhones () {
+        return allPhones;
     }
 
     public void allEmails (String allEmails) {

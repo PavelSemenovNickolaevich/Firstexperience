@@ -31,15 +31,23 @@ public class ContactPhoneAddressEmailTest extends TestBase {
         ContactData contact = applicationManager.contact().all().iterator().next();
         ContactData contactInfoFromEditForm = applicationManager.contact().infoFromEditForm(contact);
 
-        assertThat(contact.getPhoneHome(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneHome())));
-        assertThat(contact.getPhoneMobile(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneMobile())));
-        assertThat(contact.getPhoneWork(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneWork())));
+      //  assertThat(contact.getPhoneHome(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneHome())));
+      //  assertThat(contact.getPhoneMobile(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneMobile())));
+      //  assertThat(contact.getPhoneWork(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getPhoneWork())));
         // assertThat(contact.getEmailOne(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailOne())));
         //  assertThat(contact.getEmailTwo(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getEmailTwo())));
         //  assertThat(contact.getAdress(), CoreMatchers.equalTo(cleaned(contactInfoFromEditForm.getAdress())));
         assertThat(contact.getAllEmails(), CoreMatchers.equalTo(mergeEmails(contactInfoFromEditForm)));
+        assertThat(contact.getAllPhones(), CoreMatchers.equalTo(mergePnones(contactInfoFromEditForm)));
         assertThat(contact.getAdress(), CoreMatchers.equalTo(mergeAdress(contactInfoFromEditForm)));
 
+    }
+
+    private String mergePnones (ContactData contact) {
+        return Arrays.asList(contact.getPhoneHome(), contact.getPhoneMobile(), contact.getPhoneWork())
+                .stream().filter((s) -> !s.equals(""))
+                .map(ContactPhoneAddressEmailTest::cleaned)
+                .collect(Collectors.joining("\n"));
     }
 
     private String mergeEmails (ContactData contact) {
