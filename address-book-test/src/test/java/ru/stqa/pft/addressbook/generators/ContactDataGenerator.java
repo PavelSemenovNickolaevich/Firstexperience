@@ -54,17 +54,16 @@ public class ContactDataGenerator {
     private List<ContactData> generateContact (int count) {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
-            String lastname = "ivaov";
-            int id = Integer.MAX_VALUE;
+            String lastname = "Testovich %s";
             String middlename = null;
             String company = null;
-            String  firstname = "vrbrbrb";
-            String adress = "vrbrbrr";
-            String phoneHome = "dvdberber";
-            String phoneMobile = "fbfbh";
-            String  phoneWork = "Ffwfwef";
-            String  emailOne = "ebebebe";
-            String  emailTwo = "bebebebeb";
+            String  firstname = "Test %s";
+            String adress = "Moscow-city %s";
+            String phoneHome = "111111 %s";
+            String phoneMobile = "4444444 %s";
+            String  phoneWork = "333333333 %s";
+            String  emailOne = "12@gmail.com %s";
+            String  emailTwo = "qqq@mail.com %s";
             contacts.add(new ContactData(String.format(lastname, i), String.format(firstname, i), middlename, company, String.format(adress, i)
                     , String.format(phoneHome, i), String.format(phoneMobile, i),  String.format(phoneWork, i)
                     , String.format(emailOne, i), String.format(emailTwo, i)));
