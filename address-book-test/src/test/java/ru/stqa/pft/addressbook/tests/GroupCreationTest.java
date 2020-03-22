@@ -1,12 +1,15 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.thoughtworks.xstream.XStream;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.equalTo;
@@ -15,18 +18,31 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class GroupCreationTest extends TestBase {
 
     @DataProvider
-    public Iterator<Object[]> validGroups() {
-        List<Object[]>list = new ArrayList<Object[]>();
-        list.add(new Object[] {"test1", "header 1", "footer 1"});
-        list.add(new Object[] {"test2", "header 2", "footer 2"});
-        list.add(new Object[] {"test3", "header 3", "footer 3"});
-        return list.iterator();
+    public Iterator<Object[]> validGroups () throws IOException {
+    //    List<Object[]> list = new ArrayList<Object[]>();
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/groups.xml")));
+        String xml = "";
+        String line = reader.readLine();
+        while (line != null) {
+            xml += line;
+            //   String[] split =line.split(";");
+            //    list.add(new Object[] {new GroupData(). withName(split[0]).withHeader(split[1]).withFooter(split[2])});
+            line = reader.readLine();
+        }
+        //  list.add(new Object[] {"test1", "header 1", "footer 1"});
+        //  list.add(new Object[] {"test2", "header 2", "footer 2"});
+        //   list.add(new Object[] {"test3", "header 3", "footer 3"});
+        XStream xstream = new XStream();
+        xstream.processAnnotations(GroupData.class);
+        List<GroupData> groups = (List<GroupData>) xstream.fromXML(xml);
+        return groups.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+        //  return list.iterator();
     }
 
-    @Test (dataProvider = "validGroups")
-    public void testGroupCreation (String name, String header, String footer) throws Exception {
+    @Test(dataProvider = "validGroups")
+    public void testGroupCreation (GroupData group) throws Exception {
         applicationManager.goTo().groupPage();
-        GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
+        //    GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
         Groups before = applicationManager.group().all();
         //  int before  = applicationManager.getGroupHelper().getGroupCount();
         applicationManager.group().create(group);
