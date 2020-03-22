@@ -2,7 +2,6 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.common.collect.ForwardingList;
 import com.google.common.collect.ForwardingSet;
-import org.omg.CORBA.CODESET_INCOMPATIBLE;
 
 import java.util.ArrayList;
 import java.util.HashSet;
