@@ -26,7 +26,8 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("firstname"), contactData.getFirstname());
         typeContact(By.name("lastname"), contactData.getLastName());
         typeContact(By.name("middlename"), contactData.getMiddlename());
-        wd.findElement(By.name("company")).click();
+     //   typeContact(By.name("company"), contactData.getCompany());
+       // wd.findElement(By.name("company")).click();
         typeContact(By.name("company"), contactData.getCompany());
         typeContact(By.name("address"), contactData.getAdress());
         typeContact(By.name("home"), contactData.getPhoneHome());

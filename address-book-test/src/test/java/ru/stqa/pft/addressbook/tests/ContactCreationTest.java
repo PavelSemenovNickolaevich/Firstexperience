@@ -1,5 +1,7 @@
 package ru.stqa.pft.addressbook.tests;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import org.hamcrest.CoreMatchers;
 import org.hamcrest.MatcherAssert;
 import org.hamcrest.Matchers;
@@ -7,20 +9,33 @@ import org.testng.Assert;
 import org.testng.annotations.*;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
+import ru.stqa.pft.addressbook.model.GroupData;
 
-import java.util.Comparator;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.io.*;
+import java.util.*;
 import java.util.regex.Matcher;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTest extends TestBase {
+    @DataProvider
+    public Iterator<Object[]> validContactsFromJson() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
+        String json = "";
+        String line = reader.readLine();
+        while (line != null) {
+            json += line;
+            line = reader.readLine();
+        }
+        Gson gson = new Gson();
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+        return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
+    }
 
-    @Test
-    public void testCreateNewContact () throws Exception {
+    @Test(dataProvider = "validContactsFromJson")
+    public void testCreateNewContact (ContactData contact) throws Exception {
         applicationManager.goTo().goToHome();
         Contacts before = applicationManager.contact().all();
         applicationManager.goTo().goToAddNewContact();
@@ -28,9 +43,9 @@ public class ContactCreationTest extends TestBase {
         //  Contacts before = applicationManager.contact().getContactList();
         // Set<ContactData> before = applicationManager.contact().all();
         //   Contacts before = applicationManager.contact().all();
-        ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
-                , "skynet", "Moscow 3-builder street 10", "111", "222",
-                "333", "123@gmail.com", "ivanov@mail.com"  );
+       // ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
+       //         , "skynet", "Moscow 3-builder street 10", "111", "222",
+       //         "333", "123@gmail.com", "ivanov@mail.com"  );
         //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
         applicationManager.contact().createNew(contact);
         // List<ContactData> after = applicationManager.contact().getContactList();

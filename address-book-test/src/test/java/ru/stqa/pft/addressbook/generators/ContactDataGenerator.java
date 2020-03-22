@@ -55,8 +55,8 @@ public class ContactDataGenerator {
         List<ContactData> contacts = new ArrayList<ContactData>();
         for (int i = 0; i < count; i++) {
             String lastname = "Testovich %s";
-            String middlename = null;
-            String company = null;
+            String middlename = "Testov %s";
+            String company = "google %s";
             String  firstname = "Test %s";
             String adress = "Moscow-city %s";
             String phoneHome = "111111 %s";
@@ -64,7 +64,8 @@ public class ContactDataGenerator {
             String  phoneWork = "333333333 %s";
             String  emailOne = "12@gmail.com %s";
             String  emailTwo = "qqq@mail.com %s";
-            contacts.add(new ContactData(String.format(lastname, i), String.format(firstname, i), middlename, company, String.format(adress, i)
+            contacts.add(new ContactData(String.format(lastname, i), String.format(firstname, i
+            ),  String.format(middlename, i),  String.format(company, i), String.format(adress, i)
                     , String.format(phoneHome, i), String.format(phoneMobile, i),  String.format(phoneWork, i)
                     , String.format(emailOne, i), String.format(emailTwo, i)));
         }
