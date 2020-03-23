@@ -8,10 +8,7 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
-import java.util.regex.Matcher;
 
 public class ContactModificationUpdateTest extends TestBase {
     @BeforeMethod
@@ -32,7 +29,7 @@ public class ContactModificationUpdateTest extends TestBase {
 
         //List<ContactData> before = applicationManager.contact().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(modifyContact.getId(), "Pavell", "First", "Ivanov"
+        ContactData contact = new ContactData(modifyContact.getId(), System.getProperty("web.firstname"), "First", "Ivanov"
                 , "skynet", "Moscow 3-builder street 10", "111", "222",
                 "333", "123@gmail.com", "ivanov@mail.com");
         //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до

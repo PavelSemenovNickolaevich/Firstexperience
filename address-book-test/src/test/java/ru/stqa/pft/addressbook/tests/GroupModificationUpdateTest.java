@@ -8,26 +8,43 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.GroupData;
 import ru.stqa.pft.addressbook.model.Groups;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Set;
 
 public class GroupModificationUpdateTest extends TestBase {
+    private Properties properties;
+
 
     @BeforeMethod
-    public void ensurePreconditions () {
+    public void ensurePreconditions () throws IOException {
+        properties = new Properties();
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
+        properties = new Properties();
         applicationManager.goTo().groupPage();
         if (applicationManager.group().list().size() == 0) {
             applicationManager.group()
-                    .create(new GroupData().withName("qaNAme").withHeader("QaHeader").withFooter("qaFooter"));
+                    .create(new GroupData()
+                            .withName(properties.getProperty("web.nameGroup"))
+                            .withHeader(properties.getProperty("web.header"))
+                            .withFooter(properties.getProperty("web.footer")));
         }
     }
 
     @Test
-    public void testGroupUpdate () {
+    public void testGroupUpdate () throws IOException {
+        properties = new Properties();
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
         Groups before = applicationManager.group().all();
         GroupData modifiedGroup = before.iterator().next();
         // int index = before.size() - 1;
-        GroupData group = new GroupData().withId(modifiedGroup.getId()).withName("qaNAme")
-                .withHeader("QaHeader").withFooter("qaFooter");
+        GroupData group = new GroupData().withId(modifiedGroup.getId())
+                .withName(properties.getProperty("web.nameGroup"))
+                .withHeader(properties.getProperty("web.header"))
+                .withFooter(properties.getProperty("web.footer"));
         // int before  = applicationManager.getGroupHelper().getGroupCount();
         applicationManager.group().modify(group);
         Groups after = applicationManager.group().all();
