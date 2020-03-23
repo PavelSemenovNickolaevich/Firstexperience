@@ -8,30 +8,47 @@ import org.testng.annotations.Test;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Properties;
 import java.util.Set;
 
 public class ContactModificationUpdateTest extends TestBase {
+    private Properties properties;
+
     @BeforeMethod
-    public void ensurePreconditionals () {
+    public void ensurePreconditionals () throws IOException {
+        properties = new Properties();
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
         applicationManager.goTo().goToHome();
         if (applicationManager.contact().all().size() == 0) {
             applicationManager.contact()
-                    .createContact(new ContactData("Pavel111", "First", "Ivanov"
-                            , "skynet", "Moscow 3-builder street 10", "111", "222",
-                            "333", "123@gmail.com", "ivanov@mail.com" ));
+                    .createContact(new ContactData(properties.getProperty("web.firstname")
+                            , properties.getProperty("web.lastname"), properties.getProperty("web.middlename")
+                            , properties.getProperty("web.company"), properties.getProperty("web.address")
+                            , properties.getProperty("web.phoneHome"), properties.getProperty("web.phoneMobile")
+                            , properties.getProperty("web.phoneWork"), properties.getProperty("web.emailOne")
+                            , properties.getProperty("web.emailTwo")));
         }
     }
 
     @Test
-    public void testContactUpdate () {
+    public void testContactUpdate () throws IOException {
+        properties = new Properties();
+        properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
         Contacts before = applicationManager.contact().all();
         ContactData modifyContact = before.iterator().next();
 
         //List<ContactData> before = applicationManager.contact().getContactList();
         int index = before.size() - 1;
-        ContactData contact = new ContactData(modifyContact.getId(), System.getProperty("web.firstname"), "First", "Ivanov"
-                , "skynet", "Moscow 3-builder street 10", "111", "222",
-                "333", "123@gmail.com", "ivanov@mail.com");
+        ContactData contact = new ContactData(modifyContact.getId(), properties.getProperty("web.firstname")
+                , properties.getProperty("web.lastname"), properties.getProperty("web.middlename")
+                , properties.getProperty("web.company"), properties.getProperty("web.address")
+                , properties.getProperty("web.phoneHome"), properties.getProperty("web.phoneMobile"),
+                properties.getProperty("web.phoneWork"), properties.getProperty("web.emailOne")
+                , properties.getProperty("web.emailTwo"));
         //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
         applicationManager.contact().modifyContact(index, contact);
         //    List<ContactData> after = applicationManager.contact().getContactList();
