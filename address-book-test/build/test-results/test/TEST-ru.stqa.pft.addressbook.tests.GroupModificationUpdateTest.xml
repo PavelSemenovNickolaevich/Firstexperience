@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.GroupModificationUpdateTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2020-03-22T20:33:33" hostname="LAPTOP-QKC3I26M" time="2.975">
+  <properties/>
+  <testcase name="testGroupUpdate" classname="ru.stqa.pft.addressbook.tests.GroupModificationUpdateTest" time="2.975"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 24987
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+мар. 22, 2020 11:33:29 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+]]></system-err>
+</testsuite>

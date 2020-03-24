@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="ru.stqa.pft.addressbook.tests.ContactCreationTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2020-03-22T20:44:01" hostname="LAPTOP-QKC3I26M" time="49.309">
+  <properties/>
+  <testcase name="testCreateNewContact[0](ContactData{id='0', firstname='Testovich 0', lastname='Test 0'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="10.274"/>
+  <testcase name="testCreateNewContact[1](ContactData{id='0', firstname='Testovich 1', lastname='Test 1'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="7.935"/>
+  <testcase name="testCreateNewContact[2](ContactData{id='0', firstname='Testovich 2', lastname='Test 2'})" classname="ru.stqa.pft.addressbook.tests.ContactCreationTest" time="6.604"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 26171
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+мар. 22, 2020 11:43:43 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[1584909841.672][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909850.481][SEVERE]: Timed out receiving message from renderer: 0.100
+Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 40742
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+мар. 22, 2020 11:44:19 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[1584909864.452][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909870.541][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909870.645][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909870.746][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909870.848][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909870.950][SEVERE]: Timed out receiving message from renderer: 0.100
+Starting ChromeDriver 80.0.3987.106 (f68069574609230cf9b635cd784cfb1bf81bb53a-refs/branch-heads/3987@{#882}) on port 23739
+Only local connections are allowed.
+Please protect ports used by ChromeDriver and related test frameworks to prevent access by malicious code.
+мар. 22, 2020 11:44:40 PM org.openqa.selenium.remote.ProtocolHandshake createSession
+INFO: Detected dialect: W3C
+[1584909889.471][SEVERE]: Timed out receiving message from renderer: 0.100
+[1584909889.572][SEVERE]: Timed out receiving message from renderer: 0.100
+]]></system-err>
+</testsuite>

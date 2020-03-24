@@ -41,6 +41,8 @@
     <orderEntry type="library" scope="TEST" name="Gradle: com.thoughtworks.xstream:xstream:1.4.11.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.thoughtworks.xstream:xstream:1.4.11.1" level="project" />
     <orderEntry type="library" scope="TEST" name="Gradle: com.google.code.gson:gson:2.8.6" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hibernate:hibernate-core:5.4.10.Final" level="project" />
+    <orderEntry type="library" scope="TEST" name="Gradle: org.hibernate:hibernate-core:5.4.10.Final" level="project" />
   </component>
   <component name="TestModuleProperties" production-module="02.main" />
 </module>
