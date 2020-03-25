@@ -15,17 +15,18 @@ public class TestBase {
     protected static final ApplicationManager applicationManager
             = new ApplicationManager(System.getProperty("browser", BrowserType.CHROME));
 
-    @BeforeClass()
+    @BeforeSuite()
     public void setUp () throws Exception {
         applicationManager.init();
     }
 
-    @AfterClass(alwaysRun = true)
+    @AfterSuite(alwaysRun = true)
     public void tearDown () throws Exception {
         applicationManager.stop();
     }
+
     @BeforeMethod
-    public void logTestStart(Method m) {
+    public void logTestStart(Method m, Object[] p) {
         logger.info("Start test"+ m.getName() );
     }
 
