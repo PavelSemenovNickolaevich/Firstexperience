@@ -42,7 +42,7 @@ public class ContactModificationUpdateTest extends TestBase {
         ContactData modifyContact = before.iterator().next();
 
         //List<ContactData> before = applicationManager.contact().getContactList();
-        int index = before.size() - 1;
+        int index = before.size()-1;
         ContactData contact = new ContactData(modifyContact.getId(), properties.getProperty("web.firstname")
                 , properties.getProperty("web.lastname"), properties.getProperty("web.middlename")
                 , properties.getProperty("web.company"), properties.getProperty("web.address")
@@ -53,11 +53,12 @@ public class ContactModificationUpdateTest extends TestBase {
         applicationManager.contact().modifyContact(index, contact);
         //    List<ContactData> after = applicationManager.contact().getContactList();
         Set<ContactData> after = applicationManager.contact().all();
+      //  Contacts after = applicationManager.contact().all();
         //   int after = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов после
-        Assert.assertEquals(after.size(), before.size());  //Сверка контактов
-        before.remove(modifyContact);
-        before.add(contact);
-        Assert.assertEquals(before, after);
+    //    Assert.assertEquals(after.size(), before.size());  //Сверка контактов
+     //   before.remove(modifyContact);
+      //  before.add(contact);
+      //  Assert.assertEquals(before, after);
         MatcherAssert.assertThat(after, CoreMatchers.equalTo((before.without(modifyContact).withAdded(contact))));
         //  Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
         applicationManager.contact().logoutContact();
