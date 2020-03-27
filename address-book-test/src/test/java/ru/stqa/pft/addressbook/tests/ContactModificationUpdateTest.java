@@ -12,6 +12,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 import java.util.Set;
 
@@ -39,10 +40,11 @@ public class ContactModificationUpdateTest extends TestBase {
         properties = new Properties();
         properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
         Contacts before = applicationManager.contact().all();
+        int index = before.size() -1;
         ContactData modifyContact = before.iterator().next();
 
         //List<ContactData> before = applicationManager.contact().getContactList();
-        int index = before.size()-1;
+       // int index = before.size()-1;
         ContactData contact = new ContactData(modifyContact.getId(), properties.getProperty("web.firstname")
                 , properties.getProperty("web.lastname"), properties.getProperty("web.middlename")
                 , properties.getProperty("web.company"), properties.getProperty("web.address")
@@ -50,7 +52,7 @@ public class ContactModificationUpdateTest extends TestBase {
                 properties.getProperty("web.phoneWork"), properties.getProperty("web.emailOne")
                 , properties.getProperty("web.emailTwo"));
         //   int before = applicationManager.getContactHelper().getContactCount();  //Счетчик контактов до
-        applicationManager.contact().modifyContact(index, contact);
+        applicationManager.contact().modifyContact(contact,index);
         //    List<ContactData> after = applicationManager.contact().getContactList();
         Set<ContactData> after = applicationManager.contact().all();
       //  Contacts after = applicationManager.contact().all();
