@@ -2,34 +2,85 @@ package ru.stqa.pft.addressbook.model;
 
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+ @Entity
+@Table(name = "addressbook")
 public class ContactData {
     @XStreamOmitField
+    @Id
+    @Column(name = "id")
     private int id;
+
     @Expose
+    @Column(name = "firstname")
     private final String firstname;
+
     @Expose
+    @Column(name = "lastname")
     private final String lastname;
+
     @Expose
+    @Column(name = "middlename")
     private final String middlename;
+
     @Expose
+    @Column(name = "company")
     private final String company;
+
     @Expose
+    @Type(type = "text")
+    @Column(name = "address")
     private final String adress;
+
     @Expose
+    @Column(name = "home")
+    @Type(type = "text")
     private final String phoneHome;
+
     @Expose
+    @Column(name = "mobile")
+    @Type(type = "text")
     private final String phoneMobile;
+
     @Expose
+    @Column(name = "work")
+    @Type(type = "text")
     private final String phoneWork;
+
     @Expose
+    @Type(type = "text")
+    @Column(name = "email")
     private final String emailOne;
+
     @Expose
+    @Type(type = "text")
+    @Column(name = "email2")
     private final String emailTwo;
+
     @Expose
-    private String allEmails;
+    transient private String allEmails;
     @Expose
-    private String allPhones;
+    transient private String allPhones;
+
+    public  ContactData() {
+         id = Integer.MAX_VALUE;
+         firstname = null;
+         lastname = null;
+         middlename = null;
+         company = null;
+         adress = null;
+         phoneHome = null;
+         phoneMobile = null;
+         phoneWork = null;
+         emailOne = null;
+         emailTwo = null;
+     }
 
     public ContactData (String firstname, String lastname, String middlename, String company, String adress,
                         String phoneHome, String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
@@ -77,6 +128,7 @@ public class ContactData {
         this.emailOne = null;
         this.emailTwo = null;
     }
+
     public String getEmailOne() {
         return emailOne;
     }
