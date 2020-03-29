@@ -14,6 +14,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Properties;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.containsString;
@@ -72,10 +73,13 @@ public class GroupCreationTest extends TestBase {
     public void testGroupCreation (GroupData group) throws Exception {
         applicationManager.goTo().groupPage();
         //    GroupData group = new GroupData().withName(name).withHeader(header).withFooter(footer);
-        Groups before = applicationManager.group().all();
+        // Groups before = applicationManager.group().all();
+        Groups before = applicationManager.db().groups();
         //  int before  = applicationManager.getGroupHelper().getGroupCount();
+
         applicationManager.group().create(group);
-        Groups after = applicationManager.group().all();
+        //  Groups after = applicationManager.group().all();
+        Groups after = applicationManager.db().groups();
         //  int after  = applicationManager.getGroupHelper().getGroupCount();
         // Assert.assertEquals(after.size(), before.size() + 1);
         assertThat(after.size(), equalTo(before.size() + 1));
@@ -97,7 +101,7 @@ public class GroupCreationTest extends TestBase {
         //    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
         assertThat(after, equalTo(
                 before.withAdded(group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
-     //   applicationManager.group().logoutGroup();
+        //   applicationManager.group().logoutGroup();
     }
 
 }
