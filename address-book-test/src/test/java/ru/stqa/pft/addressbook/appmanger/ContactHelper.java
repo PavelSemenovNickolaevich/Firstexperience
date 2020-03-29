@@ -74,6 +74,7 @@ public class ContactHelper extends HelperBase {
 
     public void modifyContactNew (ContactData contact) {
       //  editContact(index);
+        clickModifyContactById(contact.getId());
         fillContactInfo(contact);
         updateContact();
         returnHomeContact();
@@ -117,6 +118,11 @@ public class ContactHelper extends HelperBase {
 
     public void selectContactById (int id) {
         wd.findElement(By.cssSelector("input[value= '" + id + "']")).click();
+    }
+
+    public void clickModifyContactById(int id) {
+        wd.findElement((By.cssSelector("a[href*='edit.php?id=" + id + "']"))).click();
+
     }
 
 

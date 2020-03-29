@@ -194,6 +194,46 @@ public class ContactData {
                 '}';
     }
 
+     @Override
+     public boolean equals (Object o) {
+         if (this == o) return true;
+         if (o == null || getClass() != o.getClass()) return false;
+
+         ContactData that = (ContactData) o;
+
+         if (id != that.id) return false;
+         if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+         if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
+         if (middlename != null ? !middlename.equals(that.middlename) : that.middlename != null) return false;
+         if (company != null ? !company.equals(that.company) : that.company != null) return false;
+         if (adress != null ? !adress.equals(that.adress) : that.adress != null) return false;
+         if (phoneHome != null ? !phoneHome.equals(that.phoneHome) : that.phoneHome != null) return false;
+         if (phoneMobile != null ? !phoneMobile.equals(that.phoneMobile) : that.phoneMobile != null) return false;
+         if (phoneWork != null ? !phoneWork.equals(that.phoneWork) : that.phoneWork != null) return false;
+         if (emailOne != null ? !emailOne.equals(that.emailOne) : that.emailOne != null) return false;
+         if (emailTwo != null ? !emailTwo.equals(that.emailTwo) : that.emailTwo != null) return false;
+         if (allEmails != null ? !allEmails.equals(that.allEmails) : that.allEmails != null) return false;
+         return allPhones != null ? allPhones.equals(that.allPhones) : that.allPhones == null;
+     }
+
+     @Override
+     public int hashCode () {
+         int result = id;
+         result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
+         result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+         result = 31 * result + (middlename != null ? middlename.hashCode() : 0);
+         result = 31 * result + (company != null ? company.hashCode() : 0);
+         result = 31 * result + (adress != null ? adress.hashCode() : 0);
+         result = 31 * result + (phoneHome != null ? phoneHome.hashCode() : 0);
+         result = 31 * result + (phoneMobile != null ? phoneMobile.hashCode() : 0);
+         result = 31 * result + (phoneWork != null ? phoneWork.hashCode() : 0);
+         result = 31 * result + (emailOne != null ? emailOne.hashCode() : 0);
+         result = 31 * result + (emailTwo != null ? emailTwo.hashCode() : 0);
+         result = 31 * result + (allEmails != null ? allEmails.hashCode() : 0);
+         result = 31 * result + (allPhones != null ? allPhones.hashCode() : 0);
+         return result;
+     }
+
      public void setId (int id) {
         this.id = id;
     }
