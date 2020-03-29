@@ -21,7 +21,7 @@ import static org.hamcrest.MatcherAssert.*;
 
 public class ContactCreationTest extends TestBase {
     @DataProvider
-    public Iterator<Object[]> validContactsFromJson() throws IOException {
+    public Iterator<Object[]> validContactsFromJson () throws IOException {
         BufferedReader reader = new BufferedReader(new FileReader(new File("src/test/resources/contacts.json")));
         String json = "";
         String line = reader.readLine();
@@ -30,7 +30,8 @@ public class ContactCreationTest extends TestBase {
             line = reader.readLine();
         }
         Gson gson = new Gson();
-        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>(){}.getType());
+        List<ContactData> contacts = gson.fromJson(json, new TypeToken<List<ContactData>>() {
+        }.getType());
         return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
@@ -43,18 +44,19 @@ public class ContactCreationTest extends TestBase {
         //  Contacts before = applicationManager.contact().getContactList();
         // Set<ContactData> before = applicationManager.contact().all();
         //   Contacts before = applicationManager.contact().all();
-       // ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
-       //         , "skynet", "Moscow 3-builder street 10", "111", "222",
-       //         "333", "123@gmail.com", "ivanov@mail.com"  );
+        // ContactData contact = new ContactData("Pavel111", "First", "Ivanov"
+        //         , "skynet", "Moscow 3-builder street 10", "111", "222",
+        //         "333", "123@gmail.com", "ivanov@mail.com"  );
         //   int before = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов до
         applicationManager.contact().createNew(contact);
         // List<ContactData> after = applicationManager.contact().getContactList();
         //  Contacts after = applicationManager.contact().getContactList();
         //   Set<ContactData> after = applicationManager.contact().all();
-        Contacts after = applicationManager.contact().all();
+        // Contacts after = applicationManager.contact().all();
+        Contacts after = applicationManager.db().contacts();
         //   int after = applicationManager.getContactHelper().getContactCount();   //Счетчик контактов после
         //  Assert.assertEquals(after.size(), before.size() + 1);//Сверка счетчиков
-   //     assertThat(after.size(), equalTo(before.size() + 1));
+        //     assertThat(after.size(), equalTo(before.size() + 1));
 
     /*    int max = 0;
         for (ContactData g: after) {
@@ -69,9 +71,9 @@ public class ContactCreationTest extends TestBase {
         //   before.sort(byId);
         //    after.sort(byId);
         // Assert.assertEquals(before, after);
-    //    assertThat(after, equalTo(before.withAdded(contact)));
+        //    assertThat(after, equalTo(before.withAdded(contact)));
         //    Assert.assertEquals(new HashSet<Object>(before), new HashSet<Object>(after));
-     //   applicationManager.contact().logoutContact();
+        //   applicationManager.contact().logoutContact();
     }
 
 

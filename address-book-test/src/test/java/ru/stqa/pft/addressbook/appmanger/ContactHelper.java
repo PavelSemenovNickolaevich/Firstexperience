@@ -72,6 +72,13 @@ public class ContactHelper extends HelperBase {
         returnHomeContact();
     }
 
+    public void modifyContactNew (ContactData contact) {
+      //  editContact(index);
+        fillContactInfo(contact);
+        updateContact();
+        returnHomeContact();
+    }
+
     public void createNew (ContactData contact) {
         fillContactInfo(contact);
         submitContact();
@@ -80,7 +87,8 @@ public class ContactHelper extends HelperBase {
 
 
     public void updateContact () {
-        clickContact(By.name("update"));
+       clickContact(By.name("update"));
+     //   clickContact(By.xpath("(//input[@name='update'])[2]"));
     }
 
     public void deleteContact () {
