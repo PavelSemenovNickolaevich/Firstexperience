@@ -13,4 +13,5 @@ repositories {
 dependencies {
     implementation 'org.testng:testng:7.1.0'
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
+    testImplementation group: 'org.hamcrest', name: 'hamcrest-all', version: '1.3'
 }

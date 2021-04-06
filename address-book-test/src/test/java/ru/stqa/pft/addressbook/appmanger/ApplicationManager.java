@@ -22,10 +22,11 @@ public class ApplicationManager {
         if (browser.equals(BrowserType.FIREFOX)){
             wd = new FirefoxDriver();
         } else {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
             wd = new ChromeDriver();
         }
         wd.manage().timeouts().implicitlyWait(1, TimeUnit.SECONDS);
-        wd.get("http://localhost/addressbook/group.php?selected%5B%5D=1&delete=Delete+group%28s%29");
+        wd.get("http://localhost/addressbook/addressbook/");
         groupHelper = new GroupHelper(wd);
         contactHelper = new ContactHelper(wd);
         navigationHelper = new NavigationHelper(wd);
@@ -37,7 +38,7 @@ public class ApplicationManager {
         wd.quit();
     }
 
-    public GroupHelper getGroupHelper() {
+    public GroupHelper group() {
         return groupHelper;
     }
 
@@ -45,7 +46,7 @@ public class ApplicationManager {
         return contactHelper;
     }
 
-    public NavigationHelper getNavigationHelper() {
+    public NavigationHelper goTo() {
         return navigationHelper;
     }
 
