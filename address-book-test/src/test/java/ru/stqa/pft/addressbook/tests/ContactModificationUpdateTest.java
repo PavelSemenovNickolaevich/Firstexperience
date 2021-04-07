@@ -29,7 +29,7 @@ public class ContactModificationUpdateTest extends TestBase {
     public void testContactUpdate() throws InterruptedException {
         Contacts before = app.contact().all();
         ContactData modifyContact = before.iterator().next();
-        ContactData contact = new ContactData("Ivan"
+        ContactData contact = new ContactData(modifyContact.getId(), "Ivan"
                 , "Groznie"
                 , "Skynet"
                 , "Moscow"
@@ -42,7 +42,7 @@ public class ContactModificationUpdateTest extends TestBase {
 //        Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());
 //        after.sort(byId);
 //        before.sort(byId);
-//        Assert.assertEquals(after, before);
+        Assert.assertEquals(after, before);
         assertThat(after, equalTo(before.without(modifyContact).withAdded(contact)));
     }
 }

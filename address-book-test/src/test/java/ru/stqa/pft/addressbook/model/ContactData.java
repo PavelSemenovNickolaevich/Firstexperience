@@ -11,6 +11,7 @@ public class ContactData {
     private int id;
 
     public ContactData(String firstName, String lastName, String company, String address, String phone) {
+        this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;

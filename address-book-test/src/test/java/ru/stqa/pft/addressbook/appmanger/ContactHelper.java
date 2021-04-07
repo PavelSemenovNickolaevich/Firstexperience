@@ -26,9 +26,9 @@ public class ContactHelper extends HelperBase {
 //        returnHomeContact();
 //    }
 
-    public void modify(ContactData contact) {
-        selectContactById(contact.getId());
-        editContact();
+    public void modify(ContactData contact) throws InterruptedException {
+        clickModifyContactById(contact.getId());
+     //   editContact();
         fillContactInfo(contact);
         updateContact();
         returnHomeContact();
@@ -61,6 +61,7 @@ public class ContactHelper extends HelperBase {
     }
 
     public void updateContact() {
+       // clickContact(By.xpath("//input[@value='Update'][2]"));
         clickContact(By.name("update"));
     }
 
@@ -121,8 +122,9 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void selectContactById(int id) {
-        wd.findElement(By.cssSelector("input[value ='" + id + "']")).click();
+    public void clickModifyContactById (int id) {
+        wd.findElement((By.cssSelector("a[href*='edit.php?id=" + id + "']"))).click();
+
     }
 
 
