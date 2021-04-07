@@ -4,6 +4,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
+import ru.stqa.pft.addressbook.model.Contacts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,6 +19,21 @@ public class ContactHelper extends HelperBase {
         clickContact(By.linkText("Logout"));
     }
 
+//    public void modifyContact(ContactData contact, int index) {
+//        editContact(index);
+//        fillContactInfo(contact);
+//        updateContact();
+//        returnHomeContact();
+//    }
+
+    public void modify(ContactData contact) {
+        selectContactById(contact.getId());
+        editContact();
+        fillContactInfo(contact);
+        updateContact();
+        returnHomeContact();
+    }
+
     public void fillContactInfo(ContactData contactData) {
         typeContact(By.name("firstname"), contactData.getFirstname());
         typeContact(By.name("lastname"), contactData.getLastName());
@@ -29,6 +45,10 @@ public class ContactHelper extends HelperBase {
 
     public void returnHomeContact() {
         clickContact(By.linkText("home page"));
+    }
+
+    public void home2() {
+        clickContact(By.linkText("home"));
     }
 
     public void submitContact() {
@@ -85,6 +105,24 @@ public class ContactHelper extends HelperBase {
             contacts.add(contact);
         }
         return contacts;
+    }
+
+    public Contacts all() {
+        Contacts contacts = new Contacts();
+        List<WebElement> elements = wd.findElements(By.name("entry"));
+        for (WebElement element : elements) {
+            List<WebElement> cells = element.findElements(By.tagName("td"));
+            String lastname = cells.get(1).getText();
+            String firstname = cells.get(2).getText();
+            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+            ContactData contact = new ContactData(id, firstname, lastname, null, null, null);
+            contacts.add(contact);
+        }
+        return contacts;
+    }
+
+    public void selectContactById(int id) {
+        wd.findElement(By.cssSelector("input[value ='" + id + "']")).click();
     }
 
 

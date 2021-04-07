@@ -35,7 +35,7 @@ public class GroupModificationUpdateTest extends TestBase {
 //        after.sort(byId);
         // Assert.assertEquals( new HashSet<>(before),new HashSet<>(after));
         Assert.assertEquals(before, after);
-        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.withoutAdded(modifyGroup).withAdded(group)));
+        MatcherAssert.assertThat(after, CoreMatchers.equalTo(before.without(modifyGroup).withAdded(group)));
     }
 
 }

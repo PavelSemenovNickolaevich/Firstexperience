@@ -13,20 +13,11 @@ public class GroupCreationTest extends TestBase {
     public void testGroupCreation() throws Exception {
         app.goTo().groupPage();
         Groups before = app.group().all();
-        app.group().initGroupCreation();
         GroupData group = new GroupData().withName("test2").withHeader("213").withFooter("4r32r432");
-        app.group().fillGroupForm(group);
-        app.group().submitGroupCreation();
-        app.group().returnToGroupPage();
+        app.group().create(group);
         Groups after = app.group().all();
         //Assert.assertEquals(after.size(), before.size() + 1);
         assertThat(after.size(), equalTo(before.size() + 1));
-//        int max = 0;
-//        for (GroupData g : after) {
-//            if (g.getId() > max) {
-//                max = g.getId();
-//            }
-//        }
         //  group.setId(after.stream().max((o1, o2) -> Integer.compare(o1.getId(), o2.getId())).get().getId());
         group.withId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt());
         before.add(group);
@@ -37,4 +28,5 @@ public class GroupCreationTest extends TestBase {
         //  Assert.assertEquals(before, after);
         assertThat(after, equalTo(before.withAdded(group)));
     }
+
 }

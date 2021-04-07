@@ -19,7 +19,7 @@ public class ContactData {
     }
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String phone) {
-        this.id = 0;
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
@@ -50,6 +50,11 @@ public class ContactData {
 
     public int getId() {
         return id;
+    }
+
+    public ContactData setId(int id) {
+        this.id = id;
+        return this;
     }
 
     @Override
