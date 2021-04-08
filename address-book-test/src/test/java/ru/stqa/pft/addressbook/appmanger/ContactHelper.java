@@ -45,7 +45,6 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("email"), contactData.getEmailOne());
         typeContact(By.name("email2"), contactData.getEmailTwo());
 
-        //баг с прикреплением файла
       //  attach(By.name("photo"), contactData.getPhoto());
     }
 

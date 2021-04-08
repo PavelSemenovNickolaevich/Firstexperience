@@ -4,5 +4,5 @@
     <file type="web" url="file://$PROJECT_DIR$/address-book-test" />
     <file type="web" url="file://$PROJECT_DIR$/Sandbox" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="1.8.0_231" project-jdk-type="JavaSDK" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_12" project-jdk-name="11" project-jdk-type="JavaSDK" />
 </project>

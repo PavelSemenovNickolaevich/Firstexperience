@@ -22,7 +22,7 @@ public class ContactPhoneEmailAddressTests extends TestBase {
         assertThat(contact.getAddress(), equalTo(mergeAddress(contactInfoFromEditForm)));
     }
 
-    //очищение строчек
+
     public static String cleaned(String phone) {
         return phone.replaceAll("\\s", "").replaceAll("[-()]", "")
                 .replaceAll(" ", "");
