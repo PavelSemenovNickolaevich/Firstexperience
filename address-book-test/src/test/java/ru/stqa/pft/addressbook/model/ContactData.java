@@ -9,9 +9,9 @@ public class ContactData {
     private final String company;
     private final String address;
     private String phone;
-    private final String phoneHome;
-    private final String phoneMobile;
-    private final String phoneWork;
+    private  String phoneHome;
+    private  String phoneMobile;
+    private  String phoneWork;
     private String allPhones;
     private String emailOne;
     private String emailTwo;
@@ -43,6 +43,16 @@ public class ContactData {
         this.phoneMobile = phoneMobile;
         this.phoneWork = phoneWork;
     }
+
+    public ContactData(int id, String firstName, String lastName, String company, String address, String allPhones) {
+        this.id = id;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.company = company;
+        this.address = address;
+        this.allPhones = allPhones;
+    }
+
 //    public ContactData(int id, String firstName, String lastName, String phoneHome, String phoneMobile, String phoneWork) {
 //        this.id = id;
 //        this.firstName = firstName;

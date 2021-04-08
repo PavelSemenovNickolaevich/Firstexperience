@@ -18,8 +18,8 @@ public class ContactModificationUpdateTest extends TestBase {
             app.contact().createContact(new ContactData("Pave66l"
                     , "Ivanov"
                     , "skynet"
-                    , "new-york"
-                    , "111", "222", "333"));
+                    , "new-york Test Test"
+                    , "+(916)511-343", "2 2 2", "3-3-3"));
         }
     }
 
@@ -30,8 +30,8 @@ public class ContactModificationUpdateTest extends TestBase {
         ContactData contact = new ContactData(modifyContact.getId(), "Ivan"
                 , "Groznie"
                 , "Skynet"
-                , "Moscow"
-                , "111", "222", "333");
+                , "Moscow Test Test"
+                , "+(916)511-343", "2 2 2", "3-3-3");
         app.contact().modify(contact);
         Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());
