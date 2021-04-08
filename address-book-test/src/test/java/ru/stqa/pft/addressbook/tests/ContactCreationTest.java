@@ -17,7 +17,7 @@ public class ContactCreationTest extends TestBase {
                 , "Ivan7ov"
                 , "skynet"
                 , "new-york"
-                , "111111111");
+                , "111", "222", "333");
         app.contact().createContact(contact);
         Contacts after = app.contact().all();
         assertThat(after.size(), equalTo(before.size() + 1));
