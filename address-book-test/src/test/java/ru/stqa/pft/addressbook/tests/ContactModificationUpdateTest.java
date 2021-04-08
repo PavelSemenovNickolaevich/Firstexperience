@@ -13,13 +13,14 @@ public class ContactModificationUpdateTest extends TestBase {
 
     @BeforeMethod
     public void ensurePreconditions() {
-        // app.goTo().groupPage();
         if (app.contact().all().size() == 0) {
             app.contact().createContact(new ContactData("Pave66l"
                     , "Ivanov"
                     , "skynet"
                     , "new-york Test Test"
-                    , "+(916)511-343", "2 2 2", "3-3-3"));
+                    , "+(916)511-343", "2 2 2", "3-3-3"
+                    , "123@gmail.com", "333-@13.com"
+            ));
         }
     }
 
@@ -31,7 +32,8 @@ public class ContactModificationUpdateTest extends TestBase {
                 , "Groznie"
                 , "Skynet"
                 , "Moscow Test Test"
-                , "+(916)511-343", "2 2 2", "3-3-3");
+                , "+(916)511-343", "2 2 2", "3-3-3"
+                , "123@gmail.com", "333-@13.com");
         app.contact().modify(contact);
         Contacts after = app.contact().all();
         Assert.assertEquals(after.size(), before.size());

@@ -6,7 +6,6 @@ import org.openqa.selenium.WebElement;
 import ru.stqa.pft.addressbook.model.ContactData;
 import ru.stqa.pft.addressbook.model.Contacts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ContactHelper extends HelperBase {
@@ -43,8 +42,8 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("home"), contactData.getPhoneHome());
         typeContact(By.name("mobile"), contactData.getPhoneMobile());
         typeContact(By.name("work"), contactData.getPhoneWork());
-//        typeContact(By.name("email"), contactData.getEmailOne());
-//        typeContact(By.name("email2"), contactData.getEmailTwo());
+        typeContact(By.name("email"), contactData.getEmailOne());
+        typeContact(By.name("email2"), contactData.getEmailTwo());
     }
 
     public void returnHomeContact() {
@@ -98,21 +97,21 @@ public class ContactHelper extends HelperBase {
         return isElementPresent(By.name("selected[]"));
     }
 
-    public List<ContactData> getList() {
-        List<ContactData> contacts = new ArrayList<>();
-        List<WebElement> elements = wd.findElements(By.name("entry"));
-        for (WebElement element : elements) {
-            List<WebElement> cells = element.findElements(By.tagName("td"));
-            String lastname = cells.get(1).getText();
-            String firstname = cells.get(2).getText();
-            String[] phones = cells.get(5).getText().split("\n");
-            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, firstname, lastname, null, null, null
-                    , null, null);
-            contacts.add(contact);
-        }
-        return contacts;
-    }
+//    public List<ContactData> getList() {
+//        List<ContactData> contacts = new ArrayList<>();
+//        List<WebElement> elements = wd.findElements(By.name("entry"));
+//        for (WebElement element : elements) {
+//            List<WebElement> cells = element.findElements(By.tagName("td"));
+//            String lastname = cells.get(1).getText();
+//            String firstname = cells.get(2).getText();
+//            String[] phones = cells.get(5).getText().split("\n");
+//            int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
+//            ContactData contact = new ContactData(id, firstname, lastname, null, null, null
+//                    , null, null);
+//            contacts.add(contact);
+//        }
+//        return contacts;
+//    }
 
 //    public Contacts all() {
 //        Contacts contacts = new Contacts();
@@ -137,8 +136,10 @@ public class ContactHelper extends HelperBase {
             String lastname = cells.get(1).getText();
             String firstname = cells.get(2).getText();
             String allPhones = cells.get(5).getText();
+            String allEmails = cells.get(4).getText();
+            String address = cells.get(3).getText();
             int id = Integer.parseInt(element.findElement(By.tagName("input")).getAttribute("value"));
-            ContactData contact = new ContactData(id, firstname, lastname, null, null, allPhones);
+            ContactData contact = new ContactData(id, firstname, lastname, null, address, allPhones, allEmails);
             contacts.add(contact);
         }
         return contacts;
@@ -160,7 +161,7 @@ public class ContactHelper extends HelperBase {
         String emailTwo = wd.findElement(By.name("email2")).getAttribute("value");
         String address = wd.findElement(By.name("address")).getAttribute("value");
         wd.navigate().back();
-        return new ContactData(contact.getId(), firstname, lastname, null, address, homePhone, mobilePhone, workPhone);
+        return new ContactData(contact.getId(), firstname, lastname, null, address, homePhone, mobilePhone, workPhone, emailOne, emailTwo);
     }
 
     private void initContactModificationById(int id) {

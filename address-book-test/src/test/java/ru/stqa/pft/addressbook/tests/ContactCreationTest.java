@@ -10,14 +10,14 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class ContactCreationTest extends TestBase {
 
     @Test(enabled = true)
-    public void testCreateNewContact() throws Exception {
+    public void testCreateNewContact() {
         Contacts before = app.contact().all();
-        //   app.goTo().goToContact();
         ContactData contact = new ContactData("Pavel"
                 , "Ivan7ov"
                 , "skynet"
                 , "new-york"
-                , "111", "222", "333");
+                , "111", "222", "333"
+                , "123@gmail.com", "333-@13.com");
         app.contact().createContact(contact);
         Contacts after = app.contact().all();
         assertThat(after.size(), equalTo(before.size() + 1));

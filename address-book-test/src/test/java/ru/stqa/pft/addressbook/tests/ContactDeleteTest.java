@@ -19,7 +19,8 @@ public class ContactDeleteTest extends TestBase {
                     , "Ivanov"
                     , "skynet"
                     , "new-york"
-                    ,"111", "222", "333"));
+                    , "111", "222", "333"
+                    , "123@gmail.com", "333-@13.com"));
         }
     }
 

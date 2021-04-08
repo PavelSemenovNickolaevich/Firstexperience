@@ -20,7 +20,7 @@ public class ContactData {
 
 
     public ContactData(String firstName, String lastName, String company, String address, String phoneHome
-            , String phoneMobile, String phoneWork) {
+            , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
         this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,11 +29,13 @@ public class ContactData {
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
         this.phoneWork = phoneWork;
+        this.emailOne = emailOne;
+        this.emailTwo = emailTwo;
 
     }
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
-            , String phoneMobile, String phoneWork) {
+            , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -42,50 +44,18 @@ public class ContactData {
         this.phoneHome = phoneHome;
         this.phoneMobile = phoneMobile;
         this.phoneWork = phoneWork;
+        this.emailOne = emailTwo;
+        this.emailTwo = emailOne;
     }
 
-    public ContactData(int id, String firstName, String lastName, String company, String address, String allPhones) {
+    public ContactData(int id, String firstName, String lastName, String company, String address, String allPhones, String allEmails) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
         this.address = address;
         this.allPhones = allPhones;
-    }
-
-//    public ContactData(int id, String firstName, String lastName, String phoneHome, String phoneMobile, String phoneWork) {
-//        this.id = id;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.phoneHome = phoneHome;
-//        this.phoneMobile = phoneMobile;
-//        this.phoneWork = phoneWork;
-//    }
-
-    //
-//    public ContactData(int id, String firstname, String lastname, String phoneHome
-//            , String phoneMobile, String phoneWork) {
-//        this.firstName = firstname;
-//        this.lastName = lastname;
-//        //       this.middlename = middlename;
-////        this.company = company;
-//        //       this.address = address;
-//        this.phoneHome = phoneHome;
-//        this.phoneMobile = phoneMobile;
-//        this.phoneWork = phoneWork;
-//        this.id = id;
-////        this.allPhones = allPhones;
-////        this.allEmails = allEmails;
-////        this.emailOne = null;
-////        this.emailTwo = null;
-//    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getMiddlename() {
-        return middlename;
+        this.allEmails = allEmails;
     }
 
     public String getPhoneHome() {
@@ -163,6 +133,5 @@ public class ContactData {
                 ", id=" + id +
                 '}';
     }
-
 
 }
