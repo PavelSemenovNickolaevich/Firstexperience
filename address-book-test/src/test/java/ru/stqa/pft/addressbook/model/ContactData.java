@@ -1,14 +1,18 @@
 package ru.stqa.pft.addressbook.model;
 
+import com.thoughtworks.xstream.annotations.XStreamAlias;
+import com.thoughtworks.xstream.annotations.XStreamOmitField;
+
 import java.io.File;
 import java.util.Objects;
 
+@XStreamAlias("contacts")
 public class ContactData {
     private final String firstName;
-    private final String lastName;
+    private String lastName;
     private String middlename;
-    private final String company;
-    private final String address;
+    private  String company;
+    private  String address;
     private String phone;
     private  String phoneHome;
     private  String phoneMobile;
@@ -17,6 +21,7 @@ public class ContactData {
     private String emailOne;
     private String emailTwo;
     private String allEmails;
+    @XStreamOmitField
     private int id;
     private File photo;
 
@@ -38,7 +43,6 @@ public class ContactData {
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
             , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
-        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
@@ -49,6 +53,7 @@ public class ContactData {
         this.emailOne = emailTwo;
         this.emailTwo = emailOne;
     }
+
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String allPhones, String allEmails) {
         this.id = id;
@@ -102,6 +107,42 @@ public class ContactData {
 
     public String getAddress() {
         return address;
+    }
+
+    public void setMiddlename(String middlename) {
+        this.middlename = middlename;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setPhoneHome(String phoneHome) {
+        this.phoneHome = phoneHome;
+    }
+
+    public void setPhoneMobile(String phoneMobile) {
+        this.phoneMobile = phoneMobile;
+    }
+
+    public void setPhoneWork(String phoneWork) {
+        this.phoneWork = phoneWork;
+    }
+
+    public void setAllPhones(String allPhones) {
+        this.allPhones = allPhones;
+    }
+
+    public void setEmailOne(String emailOne) {
+        this.emailOne = emailOne;
+    }
+
+    public void setEmailTwo(String emailTwo) {
+        this.emailTwo = emailTwo;
+    }
+
+    public void setAllEmails(String allEmails) {
+        this.allEmails = allEmails;
     }
 
     public File getPhoto() {
