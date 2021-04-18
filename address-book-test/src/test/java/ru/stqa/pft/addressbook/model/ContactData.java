@@ -3,41 +3,70 @@ package ru.stqa.pft.addressbook.model;
 import com.google.gson.annotations.Expose;
 import com.thoughtworks.xstream.annotations.XStreamAlias;
 import com.thoughtworks.xstream.annotations.XStreamOmitField;
+import org.hibernate.annotations.Type;
 
+import javax.persistence.*;
 import java.io.File;
 import java.util.Objects;
 
+@Entity
+@Table(name = "addressbook")
 @XStreamAlias("contacts")
 public class ContactData {
     @Expose
-    private final String firstName;
+    @Column(name = "firstname")
+    private String firstName;
     @Expose
+    @Column(name = "lastname")
     private String lastName;
     @Expose
+    @Transient
     private String middlename;
+    @Transient
+    private String group;
     @Expose
-    private  String company;
+    @Column(name = "company")
+    private String company;
     @Expose
-    private  String address;
+    @Column(name = "address")
+    @Type(type = "text")
+    private String address;
     @Expose
+    @Transient
     private String phone;
     @Expose
-    private  String phoneHome;
+    @Column(name = "home")
+    @Type(type = "text")
+    private String phoneHome;
     @Expose
-    private  String phoneMobile;
+    @Column(name = "mobile")
+    @Type(type = "text")
+    private String phoneMobile;
     @Expose
-    private  String phoneWork;
+    @Column(name = "work")
+    @Type(type = "text")
+    private String phoneWork;
     @Expose
+    @Transient
     private String allPhones;
     @Expose
+    @Column(name = "email")
+    @Type(type = "text")
     private String emailOne;
     @Expose
+    @Column(name = "email2")
+    @Type(type = "text")
     private String emailTwo;
     @Expose
+    @Transient
     private String allEmails;
+    @Id
+    @Column(name = "id")
     @XStreamOmitField
     private int id;
-    private File photo;
+    @Transient
+   // @Column(name = "photo")
+    private String photo;
 
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
@@ -54,8 +83,13 @@ public class ContactData {
         this.emailTwo = emailTwo;
 
     }
-//
-    public ContactData( String firstName, String lastName, String company, String address, String phoneHome
+
+    public ContactData() {
+    }
+
+
+
+    public ContactData(String firstName, String lastName, String company, String address, String phoneHome
             , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
         this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
@@ -161,11 +195,11 @@ public class ContactData {
     }
 
     public File getPhoto() {
-        return photo;
+        return new File(photo);
     }
 
     public ContactData withPhoto(File photo) {
-        this.photo = photo;
+        this.photo = photo.getPath();
         return this;
     }
 
