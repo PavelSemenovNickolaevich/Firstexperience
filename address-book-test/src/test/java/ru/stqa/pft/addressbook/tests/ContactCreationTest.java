@@ -24,47 +24,50 @@ public class ContactCreationTest extends TestBase {
 
     @DataProvider
     public Iterator<Object[]> validTestFromJson() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.json"));
-        StringBuilder json = new StringBuilder();
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            json.append(line);
-            line = bufferedReader.readLine();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.json"))) {
+            StringBuilder json = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                json.append(line);
+                line = bufferedReader.readLine();
+            }
+            Gson gson = new Gson();
+            List<ContactData> contacts = gson.fromJson(json.toString(), new TypeToken<List<ContactData>>() {  //List<ContactData>.class
+            }.getType());
+            return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
-        Gson gson = new Gson();
-        List<ContactData> contacts = gson.fromJson(json.toString(), new TypeToken<List<ContactData>>() {  //List<ContactData>.class
-        }.getType());
-        return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validTestFromXml() throws IOException {
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.xml"));
-        StringBuilder xml = new StringBuilder();
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            xml.append(line);
-            line = bufferedReader.readLine();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.xml"))) {
+            StringBuilder xml = new StringBuilder();
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                xml.append(line);
+                line = bufferedReader.readLine();
+            }
+            XStream xStream = new XStream();
+            xStream.processAnnotations(ContactData.class);
+            List<ContactData> contacts = (List<ContactData>) xStream.fromXML(String.valueOf(xml));
+            return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
         }
-        XStream xStream = new XStream();
-        xStream.processAnnotations(ContactData.class);
-        List<ContactData> contacts = (List<ContactData>) xStream.fromXML(String.valueOf(xml));
-        return contacts.stream().map((g) -> new Object[]{g}).collect(Collectors.toList()).iterator();
     }
 
     @DataProvider
     public Iterator<Object[]> validTestFromCsv() throws IOException {
         List<Object[]> list = new ArrayList<>();
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"));
-        String line = bufferedReader.readLine();
-        while (line != null) {
-            String[] split = line.split(";");
-            list.add(new Object[]{new ContactData(split[0], split[1], split[2]
-                    , split[3], split[4], split[5], split[6]
-                    , split[7], split[8])});
-            line = bufferedReader.readLine();
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader("src/test/resources/contacts.csv"))) {
+            String line = bufferedReader.readLine();
+            while (line != null) {
+                String[] split = line.split(";");
+                list.add(new Object[]{new ContactData(split[0], split[1], split[2]
+                        , split[3], split[4], split[5], split[6]
+                        , split[7], split[8])});
+                line = bufferedReader.readLine();
+            }
+            return list.iterator();
         }
-        return list.iterator();
     }
 
     @Test(dataProvider = "validTestFromCsv")
