@@ -57,6 +57,7 @@ public class ContactData {
 
     public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
             , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
+        this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
