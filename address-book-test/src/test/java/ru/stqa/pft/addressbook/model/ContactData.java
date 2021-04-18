@@ -40,9 +40,9 @@ public class ContactData {
     private File photo;
 
 
-    public ContactData(String firstName, String lastName, String company, String address, String phoneHome
+    public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
             , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
-        this.id = Integer.MAX_VALUE;
+        this.id = 0;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
@@ -54,10 +54,10 @@ public class ContactData {
         this.emailTwo = emailTwo;
 
     }
-
-    public ContactData(int id, String firstName, String lastName, String company, String address, String phoneHome
+//
+    public ContactData( String firstName, String lastName, String company, String address, String phoneHome
             , String phoneMobile, String phoneWork, String emailOne, String emailTwo) {
-        this.id = id;
+        this.id = Integer.MAX_VALUE;
         this.firstName = firstName;
         this.lastName = lastName;
         this.company = company;
