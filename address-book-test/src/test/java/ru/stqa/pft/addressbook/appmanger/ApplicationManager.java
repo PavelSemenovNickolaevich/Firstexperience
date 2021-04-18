@@ -11,52 +11,58 @@ import java.io.IOException;
 import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
-    public class ApplicationManager {
-        private final Properties properties;
-        private final String browser;
-        private WebDriver wd;
-        private NavigationHelper navigationHelper;
-        private ContactHelper contactHelper;
-        private GroupHelper groupHelper;
+public class ApplicationManager {
+    private final Properties properties;
+    private final String browser;
+    private WebDriver wd;
+    private NavigationHelper navigationHelper;
+    private ContactHelper contactHelper;
+    private GroupHelper groupHelper;
+    private DbHelper dbHelper;
 
-        public ApplicationManager(String browser) {
-            this.browser = browser;
-            properties = new Properties();
-        }
-
-        public void init() throws IOException {
-            String target = System.getProperty("target", "local");
-            properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
-            if (browser.equals(BrowserType.FIREFOX)) {
-                wd = new FirefoxDriver();
-            } else {
-                System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
-                wd = new ChromeDriver();
-            }
-            wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
-            wd.get(properties.getProperty("web.baseUrl"));
-            groupHelper = new GroupHelper(wd);
-            contactHelper = new ContactHelper(wd);
-            navigationHelper = new NavigationHelper(wd);
-            SessionHelper sessionHelper = new SessionHelper(wd);
-            sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
-        }
-
-        public void stop() {
-            wd.quit();
-        }
-
-        public GroupHelper group() {
-            return groupHelper;
-        }
-
-        public ContactHelper contact() {
-            return contactHelper;
-        }
-
-        public NavigationHelper goTo() {
-            return navigationHelper;
-        }
-
+    public ApplicationManager(String browser) {
+        this.browser = browser;
+        properties = new Properties();
     }
+
+    public void init() throws IOException {
+        String target = System.getProperty("target", "local");
+        dbHelper = new DbHelper();
+        properties.load(new FileReader(new File(String.format("src/test/resources/%s.properties", target))));
+        if (browser.equals(BrowserType.FIREFOX)) {
+            wd = new FirefoxDriver();
+        } else {
+            System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver.exe");
+            wd = new ChromeDriver();
+        }
+        wd.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
+        wd.get(properties.getProperty("web.baseUrl"));
+        groupHelper = new GroupHelper(wd);
+        contactHelper = new ContactHelper(wd);
+        navigationHelper = new NavigationHelper(wd);
+        SessionHelper sessionHelper = new SessionHelper(wd);
+        sessionHelper.login(properties.getProperty("web.adminLogin"), properties.getProperty("web.adminPassword"));
+    }
+
+    public void stop() {
+        wd.quit();
+    }
+
+    public GroupHelper group() {
+        return groupHelper;
+    }
+
+    public ContactHelper contact() {
+        return contactHelper;
+    }
+
+    public DbHelper db() {
+        return dbHelper;
+    }
+
+    public NavigationHelper goTo() {
+        return navigationHelper;
+    }
+
+}
 
