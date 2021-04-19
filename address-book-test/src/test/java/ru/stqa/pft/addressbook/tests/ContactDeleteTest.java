@@ -22,7 +22,7 @@ public class ContactDeleteTest extends TestBase {
         // app.goTo().groupPage();
         properties = new Properties();
         properties.load(new FileReader(new File(String.format("src/test/resources/local.properties"))));
-        if (app.contact().all().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactData(properties.getProperty("web.firstname")
                     , properties.getProperty("web.lastName")
                     , properties.getProperty("web.company")
@@ -37,11 +37,13 @@ public class ContactDeleteTest extends TestBase {
 
     @Test(enabled = true)
     public void deleteContactTest() {
-        Contacts before = app.contact().all();
+        // Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData deletedContact = before.iterator().next();
-        app.contact().deleteContact();
+        app.contact().deleteContact(deletedContact);
         app.contact().home();
-        Contacts after = app.contact().all();
+        //   Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size() - 1);
         assertThat(after, equalTo(before.without(deletedContact)));
 

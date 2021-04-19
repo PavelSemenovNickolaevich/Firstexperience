@@ -72,7 +72,8 @@ public class ContactCreationTest extends TestBase {
 
     @Test(dataProvider = "validTestFromCsv")
     public void testCreateNewContact(ContactData contact) {
-        Contacts before = app.contact().all();
+        //   Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         app.goTo().goToAddNewContact();
 //        File photo = new File("src/test/resources/terminator.png");
 //        ContactData contact = new ContactData("Pavel"
@@ -83,8 +84,9 @@ public class ContactCreationTest extends TestBase {
 //                , "123@gmail.com", "333-@13.com")
 //                .withPhoto(photo);
         app.contact().createContact(contact);
-        Contacts after = app.contact().all();
-        assertThat(after.size(), equalTo(before.size() + 1));
+        //  Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
+        //  assertThat(after.size(), equalTo(before.size() + 1));
         assertThat(after, equalTo(
                 before.withAdded(contact.setId(after.stream().mapToInt((g) -> g.getId()).max().getAsInt()))));
         //     Comparator<? super ContactData> byId = (g1, g2) -> Integer.compare(g1.getId(), g2.getId());

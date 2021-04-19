@@ -25,9 +25,24 @@ public class ContactHelper extends HelperBase {
 //        returnHomeContact();
 //    }
 
-    public void modify(ContactData contact) throws InterruptedException {
+//    public void modify(ContactData contact) throws InterruptedException {
+//        clickModifyContactById(contact.getId());
+//        //   editContact();
+//        fillContactInfo(contact);
+//        updateContact();
+//        returnHomeContact();
+//    }
+
+//    public void modifyContact (ContactData contact, int index) {
+//        editContact(index);
+//        fillContactInfo(contact);
+//        updateContact();
+//        returnHomeContact();
+//    }
+
+    public void modifyContactNew(ContactData contact) {
+        //  editContact(index);
         clickModifyContactById(contact.getId());
-        //   editContact();
         fillContactInfo(contact);
         updateContact();
         returnHomeContact();
@@ -45,7 +60,7 @@ public class ContactHelper extends HelperBase {
         typeContact(By.name("email"), contactData.getEmailOne());
         typeContact(By.name("email2"), contactData.getEmailTwo());
 
-      //  attach(By.name("photo"), contactData.getPhoto());
+        //  attach(By.name("photo"), contactData.getPhoto());
     }
 
     public void returnHomeContact() {
@@ -70,8 +85,13 @@ public class ContactHelper extends HelperBase {
         clickContact(By.name("update"));
     }
 
-    public void deleteContact() {
-        clickContact(By.name("selected[]"));
+//    public void deleteContact() {
+//        clickContact(By.name("selected[]"));
+//        clickContact(By.xpath("//input[@value='Delete']"));
+//        wd.switchTo().alert().accept();
+//    }
+
+    public void deleteContact () {
         clickContact(By.xpath("//input[@value='Delete']"));
         wd.switchTo().alert().accept();
     }
@@ -147,9 +167,8 @@ public class ContactHelper extends HelperBase {
         return contacts;
     }
 
-    public void clickModifyContactById(int id) {
+    public void clickModifyContactById (int id) {
         wd.findElement((By.cssSelector("a[href*='edit.php?id=" + id + "']"))).click();
-
     }
 
     public ContactData infoFromEditForm(ContactData contact) {
@@ -172,6 +191,16 @@ public class ContactHelper extends HelperBase {
         List<WebElement> cells = row.findElements(By.tagName("td"));
         cells.get(7).findElement((By.tagName("a"))).click();
 
+    }
+
+    public void deleteContact(ContactData contact) {
+        selectContactById(contact.getId());
+        deleteContact();
+        home();
+    }
+
+    public void selectContactById (int id) {
+        wd.findElement(By.cssSelector(String.format("input[value='%s']", id))).click();
     }
 }
 

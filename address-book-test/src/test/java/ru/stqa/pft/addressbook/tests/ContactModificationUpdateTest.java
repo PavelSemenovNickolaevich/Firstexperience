@@ -21,7 +21,7 @@ public class ContactModificationUpdateTest extends TestBase {
     public void ensurePreconditions() throws IOException {
         properties = new Properties();
         properties.load(new FileReader(new File("src/test/resources/local.properties")));
-        if (app.contact().all().size() == 0) {
+        if (app.db().contacts().size() == 0) {
             app.contact().createContact(new ContactData(properties.getProperty("web.firstname")
                     , properties.getProperty("web.lastName")
                     , properties.getProperty("web.company")
@@ -38,7 +38,8 @@ public class ContactModificationUpdateTest extends TestBase {
     public void testContactUpdate() throws InterruptedException, IOException {
         properties = new Properties();
         properties.load(new FileReader(new File("src/test/resources/local.properties")));
-        Contacts before = app.contact().all();
+    //    Contacts before = app.contact().all();
+        Contacts before = app.db().contacts();
         ContactData modifyContact = before.iterator().next();
         ContactData contact = (new ContactData(modifyContact.getId(), properties.getProperty("web.firstname")
                 , properties.getProperty("web.lastName")
@@ -49,8 +50,9 @@ public class ContactModificationUpdateTest extends TestBase {
                 , properties.getProperty("web.phoneWork")
                 , properties.getProperty("web.emailOne")
                 , properties.getProperty("web.emailTwo")));
-        app.contact().modify(contact);
-        Contacts after = app.contact().all();
+        app.contact().modifyContactNew(contact);
+   //     Contacts after = app.contact().all();
+        Contacts after = app.db().contacts();
         Assert.assertEquals(after.size(), before.size());
         before.remove(modifyContact);
         before.add(contact);
