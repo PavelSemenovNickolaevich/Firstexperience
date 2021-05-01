@@ -17,6 +17,8 @@ public class ApplicationManager {
     private WebDriver wd;
     private RegistrationHelper registrationHelper;
     private FtpHelper ftp;
+    private MailHelper mailHelper;
+    private JamesHelper jamesHelper;
 
     public ApplicationManager(String browser) {
         this.browser = browser;
@@ -69,5 +71,33 @@ public class ApplicationManager {
         }
         return ftp;
     }
+
+    public MailHelper mail() {
+        if(mailHelper == null) {
+            mailHelper = new MailHelper(this);
+        }
+        return mailHelper;
+    }
+
+    public JamesHelper james() {
+        if(jamesHelper == null) {
+            jamesHelper = new JamesHelper(this);
+        }
+        return jamesHelper;
+    }
+
+//    public ChangePasswordHelper changePassword() {
+//        if (changePassword == null) {
+//            changePassword = new ChangePasswordHelper(this);
+//        }
+//        return changePassword;
+//    }
+//
+//    public SoapHelper soap() {
+//        if (soapHelper == null) {
+//            soapHelper = new SoapHelper(this);
+//        }
+//        return soapHelper;
+//    }
 }
 
